@@ -25,25 +25,11 @@ WORKDIR /app
 # 从后端构建产物复制 JAR
 COPY --from=backend-builder /app/target/yf-bev2-api.jar /app/app.jar
 
-# 环境变量配置
+# 环境变量 - 使用 Spring Boot 标准前缀 SPRING_ 自动注入，无需手动拼接
 ENV JAVA_OPTS="-Xms256m -Xmx512m"
-ENV DB_HOST=mysql
-ENV DB_PORT=3306
-ENV DB_NAME=yf_boot_exam
-ENV DB_USER=root
-ENV DB_PASS=root@123
-ENV REDIS_HOST=redis
-ENV REDIS_PORT=6379
-ENV REDIS_DB=13
+ENV TZ=Asia/Shanghai
 
 # 启动
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar \
-  --spring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true \
-  --spring.datasource.username=${DB_USER} \
-  --spring.datasource.password=${DB_PASS} \
-  --spring.data.redis.host=${REDIS_HOST} \
-  --spring.data.redis.port=${REDIS_PORT} \
-  --spring.data.redis.database=${REDIS_DB} \
-  ${EXTRA_OPTS}"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar ${EXTRA_OPTS}"]
 
 EXPOSE 8080

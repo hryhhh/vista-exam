@@ -1,144 +1,237 @@
-# **远见在线考试系统-v2版**
+# 远见在线考试系统
 
-![Static Badge](https://img.shields.io/badge/Springboot-3.0-red)
-![Static Badge](https://img.shields.io/badge/Vue-3.0-yellow)
-![Static Badge](https://img.shields.io/badge/License-MIT-blue)
+> 基于 Spring Boot 3 + Vue 3 的前后端分离在线考试系统，支持管理端与学员端双端操作，提供完整的考试流程与题库管理能力。
 
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.1-red)
+![Java](https://img.shields.io/badge/Java-17-blue)
+![Vue](https://img.shields.io/badge/Vue-3.3-yellow)
+![License](https://img.shields.io/badge/license-MIT-green)
 
+---
 
-# 项目简介
-秉承一贯的开源理念，远见在线考试系统在原有旧项目的基础上（旧版移步：[https://gitee.com/vandc/yf-exam-lite](https://gitee.com/vandc/yf-exam-lite)）再次升级，本次升级不管是从后端还是前台，都采用全新的技术栈来开发；后端采用Java17+SpringBoot3.0，前端使用Vue3.0+TypeScript+ElementPlus；项目实现了前后端的完整考试流程，基础功能组件完善可用，便于同学们对前瞻技术的体验和学习研究，感谢关注本项目！  
+## 目录
 
+- [项目简介](#项目简介)
+- [技术栈](#技术栈)
+- [系统架构](#系统架构)
+- [功能特性](#功能特性)
+- [快速开始](#快速开始)
+  - [Docker 一键启动（推荐）](#docker-一键启动推荐)
+  - [本地开发环境](#本地开发环境)
+- [系统截图](#系统截图)
+- [默认账号](#默认账号)
+- [常见问题](#常见问题)
+- [联系方式](#联系方式)
 
-# 技术栈
-后端：Java17 + SpringBoot3.0 + Shiro + MyBatisPlus + Swagger3  
-前端：Vue3.0 + TypeScript + ElementPlus + Vite   
+---
 
+## 项目简介
 
-# 自带功能  
-###管理端  
-1.菜单管理：功能菜单及权限相关控制、通过角色权限动态加载到前端页面，构建路由；  
-2.角色管理：定义角色关联的菜单及功能、实现动态权限管理；  
-3.数据字典：分为数据字典和分类字典，分类字典支持多级树结构；  
-4.个性配置：设置网站名称、登录页面图标、后台图标、登录踢出机制、注册开关等内容；  
-5.插件管理：目前有本地上传插件，后续打算做更多有用的插件，实现一键集成到系统；  
-6.部门管理：定义部门信息、支持多级树结构；  
-7.人员管理：即用户管理、系统的管理用户学员用户都在此处维护；  
-8.资料修改：用户自行维护信息、如姓名、头像等上传；  
-9.密码安全：用户修改密码；  
-10.考试管理：维护考试信息、考试出题组卷策略、考试记录查看等；  
-11.题库管理：题库基本信息、题库统计概览；  
-12.试题管理：挂载于题库中，维护试题信息，试题支持单选题、多选题、判断题、不定项选择题；  
+远见在线考试系统是一套功能完善的在线考试管理平台，涵盖从题库建设、智能组卷、在线答题到成绩分析的完整考试流程。系统采用前后端分离架构，支持 RBAC 权限管理、多题型支持、实时考试计时等功能，适用于学校培训、企业考核等多种场景。
 
-## 学员端  
-1.在线考试：列出学员可以考试的列表、进入考试、考试答题、交卷等完善的考试流程；  
-2.考试记录：列出考试记录及通过情况、考试明细等；  
-3.资料修改：用户自行维护信息、如姓名、头像等上传；  
-4.密码安全：用户修改密码；  
+---
 
-# 在线体验  
-体验地址： [https://be2.yfhl.net](https://be2.yfhl.net)  
-体验账号：admin/admin（管理员）  student/student（学员）  
-官网网站： [https://www.yfhl.net](https://www.yfhl.net)    
-QQ交流群：757328773  
+## 技术栈
 
-> 特别说明：体验地址如果不能访问或无法登录，请联系我们    
+### 后端
 
- 
+| 技术 | 版本 | 用途 |
+|------|------|------|
+| Java | 17 | 开发语言 |
+| Spring Boot | 3.2.1 | 应用框架 |
+| MyBatis-Plus | 3.5.11 | ORM 框架 |
+| Apache Shiro | 2.0.2 | 权限认证 |
+| Spring Data Redis | - | 缓存 / 会话管理 |
+| Quartz | - | 定时任务调度 |
+| SpringDoc + Knife4j | 2.3.0 / 4.5.0 | API 文档 |
+| Apache POI | 4.1.2 | Office 文件处理 |
+| Hutool | 5.8.26 | 工具类库 |
+| HikariCP | - | 数据库连接池 |
 
-# 商业咨询  
+### 前端
 
-> 商业版本是开源的动力和支持，如果您需要商业版本，请联系我们  
+| 技术 | 版本 | 用途 |
+|------|------|------|
+| Vue | 3.3.4 | 渐进式框架 |
+| TypeScript | 5.1.6 | 类型安全 |
+| Element Plus | 2.3.12 | UI 组件库 |
+| Vite | 4.4.9 | 构建工具 |
+| Pinia | 2.1.6 | 状态管理 |
+| Vue Router | 4.2.4 | 路由管理 |
+| Axios | 1.4.0 | HTTP 客户端 |
+| ECharts | 5.4.3 | 数据可视化 |
+| UnoCSS | 0.55.0 | 原子化 CSS |
+| WangEditor | 5.x | 富文本编辑器 |
 
-联系人：郭经理  
-手机号：18603038204  
-微信号：gyh_yinzi    
-![联系我们](https://cdn.yfhl.net/be2/q_dora.png)    
+### 基础设施
 
+| 组件 | 版本 | 用途 |
+|------|------|------|
+| MySQL | 8.0 | 关系型数据库 |
+| Redis | 7 | 缓存与会话存储 |
+| Nginx | alpine | 静态资源托管 / 反向代理 |
 
+---
 
-# 使用简介  
+## 系统架构
 
-## 运行环境要求  
-- JDK版本：JDK17  
-
-- 数据库：MySQL5.7 或 MySQL8.0  
-
-- Redis：4.x及以上  
-
-- Nginx：可选，用于做前后端分离部署，无版本要求  
-
-  
-
-
-## 后端说明
-
-1. **开发工具**  
-   - 后端开发使用 IntelliJ IDEA  
-2. **JDK 版本要求**  
-   - 项目基于 JDK 17（理论上也兼容 JDK 21）  
-   - 推荐使用 **Zulu JDK**  
-     下载地址：https://www.azul.com/downloads/#zulu  
-
-## 前端说明
-1. **开发工具**  
-   - 后端开发使用WebStrom    
-2. **Node版本要求**  
-   - 作者开发环境node版本为： v23.4.0，配套npm版本为：10.9.2  
-
-```she
-# 开发环境node版本
-node -v
-v23.4.0
-# 开发环境npm版本
-npm -v
-10.9.2
+```
+┌─────────────────────────────────────────────────────────────┐
+│                       浏览器                                │
+└───────────────┬───────────────────────────────┬─────────────┘
+                │                               │
+           :80 HTTP                        :8080 API
+                │                               │
+┌───────────────▼──────────┐   ┌───────────────▼─────────────┐
+│      Nginx (Web)         │   │    Spring Boot (API)        │
+│  静态资源 + 反向代理      │──▶│  RESTful API + 业务逻辑      │
+└──────────────────────────┘   └───────────┬─────────────────┘
+                                           │
+                        ┌──────────────────┼──────────────────┐
+                        │                  │                   │
+                   ┌────▼────┐      ┌──────▼──────┐    ┌──────▼──────┐
+                   │ MySQL   │      │    Redis     │    │   Quartz   │
+                   │ :3306   │      │   :6379      │    │ (JDBC)     │
+                   └─────────┘      └──────────────┘    └─────────────┘
 ```
 
-> node版本和npm版需对应，避免出现奇奇怪怪的问题；如果无法解决，尝试卸载干净全部重新安装  
+---
 
+## 功能特性
 
+### 管理端
 
-前端编译常用命令  
+| 模块 | 功能说明 |
+|------|----------|
+| 菜单管理 | 功能菜单及权限控制，通过角色权限动态加载前端路由 |
+| 角色管理 | 定义角色关联的菜单及功能，实现动态权限管理 |
+| 数据字典 | 支持多级树结构的分类字典与数据字典 |
+| 个性配置 | 网站名称、登录图标、后台图标、登录踢出机制、注册开关等 |
+| 插件管理 | 可扩展的一键集成插件机制（当前支持本地上传） |
+| 部门管理 | 支持多级树结构的部门信息维护 |
+| 人员管理 | 管理员与学员用户的统一维护 |
+| 考试管理 | 考试信息维护、出题组卷策略配置、考试记录查看 |
+| 题库管理 | 题库基本信息管理、题库统计概览 |
+| 试题管理 | 支持单选题、多选题、判断题、不定项选择题的增删改查 |
 
-```shell  
-# 使用npm安装pnpm(如果没有的话)  
-npm install pnpm -g  
-# 编译整个项目  
-pnpm install  
-# 运行开发模式  
-pnpm run dev  
-# 打包项目（打包好的目录为dist-pro）  
-pnpm run build:pro 
+### 学员端
+
+| 模块 | 功能说明 |
+|------|----------|
+| 在线考试 | 考试列表浏览、在线答题、实时计时、自动交卷 |
+| 考试记录 | 考试成绩查看、通过情况统计、考试明细回溯 |
+| 试卷详情 | 查看试卷内容及各题答题情况 |
+| 个人资料 | 个人信息维护、头像上传 |
+| 密码安全 | 密码修改 |
+
+---
+
+## 快速开始
+
+### Docker 一键启动（推荐）
+
+**前置要求**：Docker >= 20.10，Docker Compose >= 2.0
+
+```bash
+# 1. 克隆项目
+git clone <your-repo-url>
+cd vista-online-exam
+
+# 2. 一键启动（首次会自动构建镜像，约 3-5 分钟）
+docker compose up -d --build
+
+# 3. 等待 1-2 分钟后访问
+# 前端页面：http://localhost
+# 后端 API：http://localhost:8080
+# Swagger 文档：http://localhost:8080/doc.html
 ```
 
+**常用命令**：
+
+```bash
+docker compose ps              # 查看容器状态
+docker compose logs -f api     # 查看后端日志
+docker compose down            # 停止所有服务
+docker compose down -v         # 停止并删除数据卷（⚠️ 会清空数据库）
+```
+
+修改代码后重新构建：
+
+```bash
+docker compose down -v
+docker compose build --no-cache
+docker compose up -d
+```
+
+### 本地开发环境
+
+#### 环境要求
+
+- JDK 17（推荐 Zulu JDK）
+- MySQL 5.7 / 8.0
+- Redis 4.x+
+- Node.js >= 14.18（推荐 20+）
+- pnpm（`npm install -g pnpm`）
+
+#### 后端启动
+
+```bash
+# 1. 导入数据库
+mysql -u root -p < yf_boot_exam.sql
+
+# 2. 修改后端配置（yf-bev2-api/src/main/resources/application.yml）
+#    将数据库和 Redis 地址改为 localhost
+
+# 3. 用 IDEA 打开 yf-bev2-api 模块，运行 BootExamApplication
+
+# 4. 访问 http://localhost:8080
+```
+
+#### 前端启动
+
+```bash
+cd yf-bev2-vue
+pnpm install          # 安装依赖
+pnpm run dev          # 启动开发服务器（端口 8000）
+pnpm run build:pro    # 生产构建
+```
+
+> **快捷模式**：前端已预编译并集成到后端 `resources/static` 目录中，仅启动后端即可同时访问前后端。如需前后端分离部署，删除 `resources/static` 目录即可。
+
+---
+
+## 系统截图
+
+> （待补充截图）
+
+---
+
+## 默认账号
+
+| 角色 | 用户名 | 密码 | 说明 |
+|------|--------|------|------|
+| 管理员 | admin | admin | 拥有全部权限 |
+| 学员 | student | student | 仅考试相关权限 |
+
+---
+
+## 常见问题
+
+### 1. 后端启动时报 `QRTZ_TRIGGERS doesn't exist`
+
+MySQL 表名大小写问题。Docker 部署时已自动处理（`lower-case-table-names=1`），本地部署请确保 MySQL 配置 `lower_case_table_names=1`。
+
+### 2. 前端访问 404 或白屏
+
+检查后端是否正常启动，浏览器控制台是否有 API 请求报错。确认 `SPRING_DATASOURCE_URL` 等环境变量配置正确。
+
+### 3. 修改代码后如何生效？
+
+Docker 部署：`docker compose down -v && docker compose build --no-cache && docker compose up -d`
+
+本地开发：后端热重载（Spring Boot DevTools）或重启；前端 `pnpm run dev` 自动热更新。
 
 
-### 启动与访问  
+## License
 
-1. **快速启动（新手适用）**  
-   - 前端文件已预编译并集成到后端 `resources/static` 目录中，无需额外配置。  
-   - 启动后端服务后，直接访问 [http://localhost:8080](http://localhost:8080/) 即可运行完整项目。   
-2. **进阶部署（前后端分离）**  
-   - 熟悉项目后若需分离部署，直接删除 `resources/static` 目录即可。  
-
-### 接口文档    
-
-- 项目内置 **Swagger 3.0**，启动后可通过以下地址访问接口文档：  
-  http://localhost:8080/doc.html  
-
-
-
-------
-
-
-
-# 系统截图
-![系统截图](https://cdn.yfhl.net/be2/s1.png)    
-![系统截图](https://cdn.yfhl.net/be2/s2.png)   
-![系统截图](https://cdn.yfhl.net/be2/s3.png)   
-![系统截图](https://cdn.yfhl.net/be2/s4.png)   
-![系统截图](https://cdn.yfhl.net/be2/s5.png)   
-![系统截图](https://cdn.yfhl.net/be2/s6.png)   
-![系统截图](https://cdn.yfhl.net/be2/s7.png)   
-![系统截图](https://cdn.yfhl.net/be2/s8.png)   
+[MIT License](./LICENSE)

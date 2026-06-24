@@ -14,7 +14,7 @@ public class SwaggerConfig {
         public OpenAPI docsOpenApi() {
                 return new OpenAPI()
                                 .info(new Info().title("远见在线考试系统")
-                                                .description("远见在线考试系统V2版本接口文档")
+                                                .description("远见在线考试系统版本接口文档")
                                                 .version("v2.0"))
                                 .externalDocs(new ExternalDocumentation()
                                                 .description("远见互联")

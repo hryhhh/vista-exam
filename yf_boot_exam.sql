@@ -35,7 +35,7 @@ CREATE TABLE `el_cfg_base` (
 -- Records of el_cfg_base
 -- ----------------------------
 BEGIN;
-INSERT INTO `el_cfg_base` (`id`, `site_name`, `login_logo`, `login_bg`, `back_logo`, `copy_right`) VALUES ('1', '远见在线考试系统V2', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966466990272513.png', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966559726333954.png', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966492999151618.png', '<p>&copy; 2025 北京远见互联科技有限公司官网： <a href=\"https://www.yfhl.net/\" target=\"_blank\">https://www.yfhl.net/</a> </p>');
+INSERT INTO `el_cfg_base` (`id`, `site_name`, `login_logo`, `login_bg`, `back_logo`, `copy_right`) VALUES ('1', '远见在线考试系统', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966466990272513.png', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966559726333954.png', 'https://be2.yfhl.net/upload/file/2025/04/23/1914966492999151618.png', '<p>&copy; 2025 远见在线考试系统" target=\"_blank\"> </a> </p>');
 COMMIT;
 
 -- ----------------------------
