@@ -21,7 +21,6 @@ public class SysUserUpdateReqDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "头像")
     private String avatar;
 

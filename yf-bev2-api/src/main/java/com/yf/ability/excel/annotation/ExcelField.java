@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  *
  * @author bool
  */
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.TYPE})
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExcelField {
 

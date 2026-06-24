@@ -16,7 +16,8 @@ public class JacksonConfig {
     @Bean
     public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
-        objectMapper.setSerializerFactory(objectMapper.getSerializerFactory().withSerializerModifier(new JacksonSerializerModifier()));
+        objectMapper.setSerializerFactory(
+                objectMapper.getSerializerFactory().withSerializerModifier(new JacksonSerializerModifier()));
         return objectMapper;
     }
 }

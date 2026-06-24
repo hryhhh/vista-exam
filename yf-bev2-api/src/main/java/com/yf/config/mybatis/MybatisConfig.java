@@ -22,7 +22,6 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.yf.**.mapper")
 public class MybatisConfig {
 
-
     /**
      * 添加分页插件
      */

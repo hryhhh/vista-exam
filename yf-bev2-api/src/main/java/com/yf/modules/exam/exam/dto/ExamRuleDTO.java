@@ -19,10 +19,8 @@ import java.math.BigDecimal;
 @Schema(description = "考试规则")
 public class ExamRuleDTO implements Serializable {
 
-
     @Serial
     private static final long serialVersionUID = 1L;
-
 
     @Schema(description = "ID")
     private String id;

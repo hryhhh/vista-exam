@@ -21,7 +21,6 @@ public class RepoQuAnswerDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "ID")
     private String id;
 

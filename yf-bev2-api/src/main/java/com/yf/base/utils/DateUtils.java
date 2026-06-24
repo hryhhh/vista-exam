@@ -37,7 +37,6 @@ public class DateUtils {
         return (int) (l / (1000 * 60 * 60 * 24));
     }
 
-
     /**
      * dateNow:获取当前时间的字符串格式，根据传入的格式化来展示. <br/>
      *
@@ -64,7 +63,6 @@ public class DateUtils {
         return fmt.format(time.getTime());
     }
 
-
     /**
      * parseDate:将字符串转换成日期，使用：yyyy-MM-dd HH:mm:ss 来格式化
      *
@@ -75,7 +73,6 @@ public class DateUtils {
     public static Date parseDate(String date) {
         return parseDate(date, "yyyy-MM-dd HH:mm:ss");
     }
-
 
     /**
      * parseDate:将字符串转换成日期，使用指定格式化来格式化
@@ -119,6 +116,5 @@ public class DateUtils {
 
         return cl.getTime();
     }
-
 
 }

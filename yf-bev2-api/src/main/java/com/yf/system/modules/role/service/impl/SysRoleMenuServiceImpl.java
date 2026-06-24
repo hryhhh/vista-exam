@@ -32,7 +32,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
 
     @Override
     public List<String> findRoleMenus(String roleId) {
-        //查询条件
+        // 查询条件
         QueryWrapper<SysRoleMenu> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(SysRoleMenu::getRoleId, roleId);
         List<SysRoleMenu> list = this.list(wrapper);
@@ -45,7 +45,6 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
         }
         return ids;
     }
-
 
     /**
      * 保存授权

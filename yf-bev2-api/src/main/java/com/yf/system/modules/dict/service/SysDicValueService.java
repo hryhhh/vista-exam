@@ -19,58 +19,57 @@ import java.util.Map;
  */
 public interface SysDicValueService extends IService<SysDicValue> {
 
-    /**
-     * 查找分类树
-     *
-     * @param reqDTO
-     * @return
-     */
-    List<DicValueTreeDTO> findTree(SysDicValueReqDTO reqDTO);
+        /**
+         * 查找分类树
+         *
+         * @param reqDTO
+         * @return
+         */
+        List<DicValueTreeDTO> findTree(SysDicValueReqDTO reqDTO);
 
-    /**
-     * 保存字典项
-     *
-     * @param reqDTO
-     */
-    void save(SysDicValueDTO reqDTO);
+        /**
+         * 保存字典项
+         *
+         * @param reqDTO
+         */
+        void save(SysDicValueDTO reqDTO);
 
-    /**
-     * 查找一个Map列表，显示--值
-     *
-     * @param dictCode
-     * @return
-     */
-    Map<String, String> findDictMap(String dictCode);
+        /**
+         * 查找一个Map列表，显示--值
+         *
+         * @param dictCode
+         * @return
+         */
+        Map<String, String> findDictMap(String dictCode);
 
-    /**
-     * 根据数据字典删除值列表
-     *
-     * @param codes
-     */
-    void removeByDict(List<String> codes);
+        /**
+         * 根据数据字典删除值列表
+         *
+         * @param codes
+         */
+        void removeByDict(List<String> codes);
 
-    /**
-     * 查找数据字典名称
-     *
-     * @param dicCode
-     * @param value
-     * @return
-     */
-    String findDictText(String dicCode,
+        /**
+         * 查找数据字典名称
+         *
+         * @param dicCode
+         * @param value
+         * @return
+         */
+        String findDictText(String dicCode,
                         String value);
 
-
-    /**
-     * 查找其它表数据
-     *
-     * @param dicTable
-     * @param dicText
-     * @param dicCode
-     * @param value
-     * @return
-     */
-    String findTableText(String dicTable,
-                         String dicText,
-                         String dicCode,
-                         String value);
+        /**
+         * 查找其它表数据
+         *
+         * @param dicTable
+         * @param dicText
+         * @param dicCode
+         * @param value
+         * @return
+         */
+        String findTableText(String dicTable,
+                        String dicText,
+                        String dicCode,
+                        String value);
 }

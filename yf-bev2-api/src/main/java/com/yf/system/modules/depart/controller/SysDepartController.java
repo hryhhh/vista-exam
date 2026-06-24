@@ -44,7 +44,7 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:depart:add", "sys:depart:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:depart:add", "sys:depart:edit" }, logical = Logical.OR)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
     public ApiRest<?> save(@RequestBody SysDepartDTO reqDTO) {
@@ -58,11 +58,11 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:depart:delete"})
+    @RequiresPermissions(value = { "sys:depart:delete" })
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> edit(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -73,7 +73,7 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:depart:list"})
+    @RequiresPermissions(value = { "sys:depart:list" })
     @Operation(summary = "查找详情")
     @PostMapping("/detail")
     public ApiRest<SysDepartDTO> find(@RequestBody BaseIdReqDTO reqDTO) {
@@ -82,7 +82,6 @@ public class SysDepartController extends BaseController {
         BeanMapper.copy(entity, dto);
         return super.success(dto);
     }
-
 
     /**
      * 树列表
@@ -95,7 +94,6 @@ public class SysDepartController extends BaseController {
         List<SysDepartTreeDTO> dtoList = baseService.findTree(true);
         return super.success(dtoList);
     }
-
 
     /**
      * 部门树-注册用
@@ -115,7 +113,7 @@ public class SysDepartController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:depart:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:depart:edit" }, logical = Logical.OR)
     @Operation(summary = "调整部门排序")
     @PostMapping("/sort")
     public ApiRest<?> sort(@RequestBody DepartSortReqDTO reqDTO) {

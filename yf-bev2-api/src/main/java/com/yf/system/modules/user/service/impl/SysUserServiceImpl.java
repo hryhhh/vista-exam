@@ -55,7 +55,8 @@ import java.util.Map;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService, ShiroUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
+        implements SysUserService, ShiroUserService {
 
     private final SysUserRoleService sysUserRoleService;
 
@@ -66,7 +67,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private final CfgSwitchService cfgSwitchService;
 
     private final SysMenuService sysMenuService;
-
 
     @Override
     public SysUserSaveReqDTO detail(String id) {
@@ -101,7 +101,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public void delete(List<String> ids) {
 
         // 超级用户可以删除任何用户
-        if(!SysUserId.ADMIN.equals(UserUtils.getUserId())){
+        if (!SysUserId.ADMIN.equals(UserUtils.getUserId())) {
             int count = sysUserRoleService.countWithLevel(ids, UserUtils.getRoleLevel());
             if (count < ids.size()) {
                 throw new ServiceException("删除错误，可能存在越权操作！");
@@ -134,7 +134,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 校验用户状态&密码
         return this.checkAndLogin(user, reqDTO.getPassword());
     }
-
 
     /**
      * 用户登录校验
@@ -195,7 +194,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new ServiceException(ApiError.ERROR_10010002);
         }
 
-       return JsonHelper.parseObject(json, SysUserLoginDTO.class);
+        return JsonHelper.parseObject(json, SysUserLoginDTO.class);
     }
 
     @CacheEvict(value = CacheKey.TOKEN, key = "#token")
@@ -207,7 +206,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (tick) {
             try {
                 String username = JwtUtils.getUsername(token);
-                String[] keys = new String[]{Constant.USER_NAME_KEY + username};
+                String[] keys = new String[] { Constant.USER_NAME_KEY + username };
                 redisService.del(keys);
             } catch (Exception e) {
                 log.error(e);
@@ -215,11 +214,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
     }
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void update(SysUserUpdateReqDTO reqDTO) {
-
 
         // 更新用户资料
         SysUser user = this.getById(UserUtils.getUserId());
@@ -240,7 +237,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 重新登录
         if (reLogin) {
             // 退出登录
-            String[] keys = new String[]{Constant.USER_NAME_KEY + user.getUserName()};
+            String[] keys = new String[] { Constant.USER_NAME_KEY + user.getUserName() };
             redisService.del(keys);
         }
 
@@ -255,7 +252,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         // 旧密码不能与新密码一致
         boolean same = reqDTO.getOldPass().equals(reqDTO.getNewPass());
-        if(same){
+        if (same) {
             throw new ServiceException("新密码不能与旧密码一样！");
         }
 
@@ -296,12 +293,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             wrapper.lambda().ne(SysUser::getId, reqDTO.getId());
         }
 
-
         long count = this.count(wrapper);
         if (count > 0) {
             throw new ServiceException("用户名不能重复！");
         }
-
 
         // 保存基本信息
         SysUser user;
@@ -322,7 +317,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             throw new ServiceException("越级操作，不能操作等级高的用户！");
         }
 
-
         // 修改密码
         if (!StringUtils.isBlank(reqDTO.getPassword())) {
             PassInfo pass = PassHandler.buildPassword(reqDTO.getPassword());
@@ -338,24 +332,20 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     }
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public SysUserLoginDTO reg(UserRegReqDTO reqDTO) {
-
 
         boolean check = captchaService.checkCaptcha(reqDTO.getCaptchaKey(), reqDTO.getCaptchaValue());
         if (!check) {
             throw new ServiceException("图形验证码不正确或已失效！");
         }
 
-
         // 功能开关
         boolean on = cfgSwitchService.isOn(FuncSwitch.USER_REG);
         if (!on) {
             throw new ServiceException("管理员未开启用户注册！");
         }
-
 
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
         wrapper.lambda()
@@ -379,7 +369,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
                 reqDTO.getPassword());
     }
 
-
     /**
      * 保存用户并自动登录
      *
@@ -391,7 +380,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @param password
      * @return
      */
-    private SysUserLoginDTO saveAndLogin(String userId, String userName, String deptCode, String realName, String role, String mobile, String avatar, String password) {
+    private SysUserLoginDTO saveAndLogin(String userId, String userName, String deptCode, String realName, String role,
+            String mobile, String avatar, String password) {
 
         // 保存用户
         SysUser user = new SysUser();
@@ -435,7 +425,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             roleList.add(SysRoleId.USER);
         }
 
-
         // 保存角色
         sysUserRoleService.saveRoles(user.getId(), roleList, false);
 
@@ -444,7 +433,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         return this.setToken(user);
     }
-
 
     /**
      * 保存会话信息
@@ -479,7 +467,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             List<String> permissions = sysMenuService.listPermissionByRoles(respDTO.getRoles());
             respDTO.setPermissions(permissions);
 
-
             // 保存如Redis
             redisService.set(key, JsonHelper.toJson(respDTO));
         }
@@ -487,7 +474,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return respDTO;
 
     }
-
 
     /**
      * 追加用户角色信息

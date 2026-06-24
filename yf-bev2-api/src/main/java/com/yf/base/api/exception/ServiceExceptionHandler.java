@@ -54,13 +54,12 @@ public class ServiceExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler({ServiceException.class})
+    @ExceptionHandler({ ServiceException.class })
     @ResponseStatus(HttpStatus.OK)
     public ApiRest<?> serviceExceptionHandler(ServiceException e) {
         log.error(e);
         return new ApiRest(e);
     }
-
 
     /**
      * Shiro异常
@@ -68,7 +67,7 @@ public class ServiceExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler({AuthorizationException.class})
+    @ExceptionHandler({ AuthorizationException.class })
     @ResponseStatus(HttpStatus.OK)
     public ApiRest<?> shiroExceptionHandler(AuthorizationException e) {
         log.error(e);
@@ -77,7 +76,6 @@ public class ServiceExceptionHandler {
         rest.setCode(-1);
         return rest;
     }
-
 
     /**
      * 处理数据校验返回
@@ -95,7 +93,6 @@ public class ServiceExceptionHandler {
         return apiRest;
     }
 
-
     /**
      * 处理数据校验返回
      *
@@ -105,7 +102,6 @@ public class ServiceExceptionHandler {
     @ExceptionHandler(SQLDataException.class)
     @ResponseStatus(HttpStatus.OK)
     public ApiRest<?> handleMysqlDataTruncation(SQLDataException e) {
-
 
         log.error(e);
 
@@ -122,7 +118,6 @@ public class ServiceExceptionHandler {
         apiRest.setMsg(msg);
         return apiRest;
     }
-
 
     /**
      * 处理数据校验返回

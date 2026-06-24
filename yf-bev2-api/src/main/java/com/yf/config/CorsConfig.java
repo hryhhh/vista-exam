@@ -11,7 +11,6 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 import java.util.List;
 
-
 /**
  * 网关全局设置，允许跨域
  *

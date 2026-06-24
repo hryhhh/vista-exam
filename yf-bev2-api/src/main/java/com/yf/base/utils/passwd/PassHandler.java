@@ -1,6 +1,5 @@
 package com.yf.base.utils.passwd;
 
-
 import com.yf.base.utils.file.MD5Util;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -29,7 +28,6 @@ public class PassHandler {
         return MD5Util.MD5(pwdMd5 + salt).equals(pass);
     }
 
-
     /**
      * buildPassword:用于用户注册时产生一个密码
      *
@@ -39,20 +37,21 @@ public class PassHandler {
      */
     public static PassInfo buildPassword(String inputPass) {
 
-        //产生一个6位数的随机码
+        // 产生一个6位数的随机码
         String salt = RandomStringUtils.randomAlphabetic(6);
-        //加密后的密码
+        // 加密后的密码
         String encryptPassword = MD5Util.MD5(MD5Util.MD5(inputPass) + salt);
-        //返回对象
+        // 返回对象
         return new PassInfo(salt, encryptPassword);
     }
 
-
     public static void main(String[] args) {
         PassInfo pa = buildPassword("4RK#nxUp1yu981Rx");
-        log.info("UPDATE sys_user SET `password`='" + pa.getPassword() + "',salt='" + pa.getSalt() + "',data_flag=0 WHERE user_name='admin';");
+        log.info("UPDATE sys_user SET `password`='" + pa.getPassword() + "',salt='" + pa.getSalt()
+                + "',data_flag=0 WHERE user_name='admin';");
 
         PassInfo ps = buildPassword("RzQ#zSb*MFX89bCP");
-        log.info("UPDATE sys_user SET `password`='" + ps.getPassword() + "',salt='" + ps.getSalt() + "',data_flag=0 WHERE user_name='student';");
+        log.info("UPDATE sys_user SET `password`='" + ps.getPassword() + "',salt='" + ps.getSalt()
+                + "',data_flag=0 WHERE user_name='student';");
     }
 }

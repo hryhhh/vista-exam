@@ -16,9 +16,9 @@ import org.apache.shiro.SecurityUtils;
 
 import java.util.List;
 
-
 /**
  * 数据权限过滤器
+ * 
  * @author van
  * @since 2024-05-23
  */
@@ -34,7 +34,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
      * 针对业务场景进行数据权限处理
      * Mapper查询ID::主要过滤的表
      */
-    private static final String[] STATEMENTS = new String[]{
+    private static final String[] STATEMENTS = new String[] {
             ".RepoMapper.paging::el_repo",
             ".RepoQuMapper.paging::el_repo_qu",
             // 自带paging方法为selectList
@@ -47,7 +47,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
     public Expression getSqlSegment(Table table, Expression where, String mappedStatementId) {
 
         String name = table.getName();
-        if(this.require(name, mappedStatementId)){
+        if (this.require(name, mappedStatementId)) {
             log.debug("+++++进入进行权限过滤:{} , where: {},mappedStatementId: {}", table, where, mappedStatementId);
             return this.parseWhere(table);
         }
@@ -58,6 +58,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
 
     /**
      * 过滤条件，增加数据权限查询
+     * 
      * @param table
      * @return
      */
@@ -66,7 +67,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
         SysUserLoginDTO user = this.currentUser();
 
         // 如果是学员已经做了业务逻辑处理，不需要处理数据权限
-        if(user!=null && justStudent(user)){
+        if (user != null && justStudent(user)) {
             return null;
         }
 
@@ -83,7 +84,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
         }
 
         // 已登录
-        if(user!=null) {
+        if (user != null) {
 
             // 自己的数据
             if (DataScope.SCOPE_SELF.equals(user.getDataScope())) {
@@ -116,12 +117,12 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
         }
 
         // 无权限，构建一个不存在的，不可使用1!=1或者1<>1之类的，会被驱动拦截报错
-        return new HexValue(aliasName+".id='0'");
+        return new HexValue(aliasName + ".id='0'");
     }
-
 
     /**
      * 检验是否需要进行权限过滤
+     * 
      * @param tableName
      * @param statementId
      * @return
@@ -129,7 +130,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
     private boolean require(String tableName, String statementId) {
 
         // 拼接与定义一致的数据格式
-        String exp = statementId+"::"+tableName;
+        String exp = statementId + "::" + tableName;
 
         log.info("++++++++++查询过滤：{}", exp);
 
@@ -143,11 +144,14 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
 
     /**
      * 获取当前登录
+     * 
      * @return
      */
     private SysUserLoginDTO currentUser() {
         try {
-            return SecurityUtils.getSubject().getPrincipal() != null ? (SysUserLoginDTO) SecurityUtils.getSubject().getPrincipal() : null;
+            return SecurityUtils.getSubject().getPrincipal() != null
+                    ? (SysUserLoginDTO) SecurityUtils.getSubject().getPrincipal()
+                    : null;
         } catch (Exception e) {
             return null;
         }
@@ -155,6 +159,7 @@ public class DataPermissionHandler implements MultiDataPermissionHandler {
 
     /**
      * 判断是否只是学员用户
+     * 
      * @param user
      * @return
      */

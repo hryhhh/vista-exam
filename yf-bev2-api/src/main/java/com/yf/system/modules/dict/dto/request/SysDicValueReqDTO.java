@@ -20,12 +20,10 @@ public class SysDicValueReqDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "归属字典")
     private String dicCode;
 
     @Schema(description = "排除值")
     private List<String> excludes;
-
 
 }

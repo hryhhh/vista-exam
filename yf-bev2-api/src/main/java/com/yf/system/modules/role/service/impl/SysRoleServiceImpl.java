@@ -1,6 +1,5 @@
 package com.yf.system.modules.role.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -31,34 +30,31 @@ import java.util.List;
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
-
     @Override
     public IPage<SysRoleDTO> paging(PagingReqDTO<SysRoleDTO> reqDTO) {
 
-        //创建分页对象
+        // 创建分页对象
         IPage<SysRole> query = reqDTO.toPage();
 
-        //查询条件
+        // 查询条件
         QueryWrapper<SysRole> wrapper = new QueryWrapper<>();
-
 
         SysRoleDTO params = reqDTO.getParams();
         if (params != null && StringUtils.isNotBlank(params.getRoleName())) {
             wrapper.lambda().like(SysRole::getRoleName, params.getRoleName());
         }
 
-        //获得数据
+        // 获得数据
         IPage<SysRole> page = this.page(query, wrapper);
-        //转换结果
+        // 转换结果
         IPage<SysRoleDTO> pageData = JsonHelper.parseObject(page, new TypeReference<Page<SysRoleDTO>>() {
         });
         return pageData;
     }
 
-
     @Override
     public int findMaxLevel(List<String> ids) {
-        //查询条件
+        // 查询条件
         QueryWrapper<SysRole> wrapper = new QueryWrapper<>();
         wrapper.lambda().in(SysRole::getId, ids);
 
@@ -83,7 +79,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             throw new ServiceException("只能添加或修改角色级别小于" + myLevel + "的角色！");
         }
 
-        //复制参数
+        // 复制参数
         SysRole entity = new SysRole();
 
         if (!StringUtils.isBlank(reqDTO.getId())) {
@@ -103,7 +99,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public void delete(List<String> ids) {
-        //查询条件
+        // 查询条件
         QueryWrapper<SysRole> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .in(SysRole::getId, ids)

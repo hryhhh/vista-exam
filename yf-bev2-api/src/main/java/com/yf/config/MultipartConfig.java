@@ -19,7 +19,7 @@ public class MultipartConfig {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        //  单个数据大小
+        // 单个数据大小
         factory.setMaxFileSize(DataSize.ofMegabytes(5000L));
         /// 总上传数据大小
         factory.setMaxRequestSize(DataSize.ofMegabytes(5000L));

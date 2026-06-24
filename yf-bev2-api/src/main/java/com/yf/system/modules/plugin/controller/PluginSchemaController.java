@@ -29,7 +29,6 @@ public class PluginSchemaController extends BaseController {
 
     private final PluginSchemaService baseService;
 
-
     /**
      * 查找详情
      *

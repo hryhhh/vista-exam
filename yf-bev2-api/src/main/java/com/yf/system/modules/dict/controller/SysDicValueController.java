@@ -33,7 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/sys/dic/value")
 public class SysDicValueController extends BaseController {
-    
+
     private final SysDicValueService baseService;
 
     /**
@@ -42,7 +42,7 @@ public class SysDicValueController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:dict:add", "sys:dict:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:dict:add", "sys:dict:edit" }, logical = Logical.OR)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
     public ApiRest<BaseIdRespDTO> save(@RequestBody SysDicValueDTO reqDTO) {
@@ -56,11 +56,11 @@ public class SysDicValueController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:dict:delete"})
+    @RequiresPermissions(value = { "sys:dict:delete" })
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> edit(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.removeByIds(reqDTO.getIds());
         return super.success();
     }

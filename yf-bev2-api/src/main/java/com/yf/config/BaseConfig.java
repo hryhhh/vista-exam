@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-
 /**
  * 全局静态配置
  *
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "ycloud")
 public class BaseConfig {
-
 
     /**
      * 演示模式
@@ -40,7 +38,6 @@ public class BaseConfig {
      * 手机端登录同步地址
      */
     private String loginSyncH5;
-
 
     /**
      * 是否演示模式

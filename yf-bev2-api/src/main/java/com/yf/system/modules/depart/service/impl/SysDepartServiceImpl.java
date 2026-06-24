@@ -35,7 +35,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart> implements SysDepartService {
 
-
     /**
      * 0标识为顶级分类
      */
@@ -43,7 +42,6 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
     private static final String LOCK_DEPT = "sys:lock:dept";
 
     private final RedisService redisService;
-
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -54,7 +52,6 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
         if (!lock) {
             throw new ServiceException("系统正忙，请稍候...");
         }
-
 
         try {
             SysDepart entity = new SysDepart();
@@ -74,9 +71,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
             redisService.del(LOCK_DEPT);
         }
 
-
     }
-
 
     @Override
     public List<SysDepartTreeDTO> findTree(boolean self) {
@@ -91,7 +86,6 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
         // 查询参数
         return baseMapper.tree(reqDTO);
     }
-
 
     @Override
     public void sort(DepartSortReqDTO reqDTO) {
@@ -114,8 +108,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
 
         String[] arr = str.split(",");
 
-
-        // 如：云帆互联,产品研发部,技术部
+        // 如：远见互联,产品研发部,技术部
         List<String> subs = new ArrayList<>();
 
         // 默认0
@@ -126,7 +119,6 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
 
             // 自上往下搜索
             subs.add(arr[i]);
-
 
             SysDepart depart = this.findLastChild(subs);
 
@@ -155,7 +147,7 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void delete(List<String> ids) {
-        //查询条件
+        // 查询条件
         QueryWrapper<SysDepart> wrapper = new QueryWrapper<>();
         wrapper.lambda().in(SysDepart::getParentId, ids);
         long count = this.count(wrapper);
@@ -203,7 +195,6 @@ public class SysDepartServiceImpl extends ServiceImpl<SysDepartMapper, SysDepart
      * @return
      */
     private String createSubs(String parentId, List<String> list) {
-
 
         String deptCode = null;
 

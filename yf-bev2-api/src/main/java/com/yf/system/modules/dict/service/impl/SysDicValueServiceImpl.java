@@ -48,7 +48,6 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
     @Override
     public List<DicValueTreeDTO> findTree(SysDicValueReqDTO reqDTO) {
 
-
         String dicCode = reqDTO.getDicCode();
 
         QueryWrapper<SysDicValue> wrapper = new QueryWrapper();
@@ -59,28 +58,28 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
             wrapper.lambda().notIn(SysDicValue::getDicValue, reqDTO.getExcludes());
         }
 
-        //全部列表
+        // 全部列表
         List<SysDicValue> list = this.list(wrapper);
         List<DicValueTreeDTO> dtoList = BeanMapper.mapList(list, DicValueTreeDTO.class);
 
-        //子结构的列表
+        // 子结构的列表
         Map<String, List<DicValueTreeDTO>> map = new HashMap<>(16);
 
         for (DicValueTreeDTO item : dtoList) {
 
-            //如果存在
+            // 如果存在
             if (map.containsKey(item.getParentId())) {
                 map.get(item.getParentId()).add(item);
                 continue;
             }
 
-            //增加新的结构
+            // 增加新的结构
             List<DicValueTreeDTO> a = new ArrayList<>();
             a.add(item);
             map.put(item.getParentId(), a);
         }
 
-        //注意，第0级为顶级的
+        // 注意，第0级为顶级的
         List<DicValueTreeDTO> topList = map.get(ROOT_TAG);
         if (!CollectionUtils.isEmpty(topList)) {
             for (DicValueTreeDTO item : topList) {
@@ -90,7 +89,6 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
 
         return topList;
     }
-
 
     @CacheEvict(value = CacheKey.DICT, key = "#reqDTO.dicCode + '-' + #reqDTO.dicValue")
     @Override
@@ -117,7 +115,7 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
             reqDTO.setDicValue(reqDTO.getId());
         }
 
-        //复制参数
+        // 复制参数
         SysDicValue entity = new SysDicValue();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);
@@ -127,7 +125,6 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
     public Map<String, String> findDictMap(String dictCode) {
         QueryWrapper<SysDicValue> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(SysDicValue::getDicCode, dictCode);
-
 
         List<SysDicValue> list = this.list(wrapper);
 
@@ -148,7 +145,6 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
         this.remove(wrapper);
     }
 
-
     /**
      * 递归去做填充数据
      *
@@ -157,7 +153,7 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
      */
     private void fillChildren(Map<String, List<DicValueTreeDTO>> map, DicValueTreeDTO item) {
 
-        //设置子类
+        // 设置子类
         if (map.containsKey(item.getId())) {
 
             List<DicValueTreeDTO> children = map.get(item.getId());
@@ -170,14 +166,12 @@ public class SysDicValueServiceImpl extends ServiceImpl<SysDicValueMapper, SysDi
         }
     }
 
-
     @Override
     @Cacheable(value = CacheKey.DICT, key = "#dicCode + '-' + #dicValue")
     public String findDictText(String dicCode, String dicValue) {
         String text = baseMapper.findDictText(dicCode, dicValue);
         return StringUtils.isBlank(text) ? "" : text;
     }
-
 
     @Override
     public String findTableText(String dicTable, String dicText, String dicCode, String dicValue) {

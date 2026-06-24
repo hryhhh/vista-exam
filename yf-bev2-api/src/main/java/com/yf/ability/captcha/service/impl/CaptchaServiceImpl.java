@@ -1,6 +1,5 @@
 package com.yf.ability.captcha.service.impl;
 
-
 import com.yf.ability.captcha.service.CaptchaService;
 import com.yf.ability.redis.service.RedisService;
 import lombok.RequiredArgsConstructor;

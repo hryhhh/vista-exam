@@ -1,6 +1,5 @@
 package com.yf.base.utils.http;
 
-
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * HTTP请求工具类
  *
@@ -38,7 +36,6 @@ public class HttpClientUtil {
     private static final String PARAM_STARTER = "?";
     private static final String PARAM_CONCAT = "&";
     private static final String ENCODING = "UTF-8";
-
 
     /**
      * 使用POST方式提交数据并获得JSON
@@ -79,7 +76,6 @@ public class HttpClientUtil {
         return null;
     }
 
-
     /**
      * GET方法返回JSON数据
      *
@@ -111,7 +107,6 @@ public class HttpClientUtil {
         return null;
     }
 
-
     /**
      * 构造一个带参数的GET形式URL
      *
@@ -126,7 +121,7 @@ public class HttpClientUtil {
 
             StringBuffer sb = new StringBuffer(url);
 
-            //判断URL是否已经有问题号了
+            // 判断URL是否已经有问题号了
             if (url.indexOf(PARAM_STARTER) == -1) {
                 sb.append(PARAM_STARTER);
             }

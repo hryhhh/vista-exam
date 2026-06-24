@@ -36,7 +36,6 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      */
     List<SysRole> listRoles(String userId);
 
-
     /**
      * 保存全部角色
      *
@@ -46,7 +45,6 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @return
      */
     void saveRoles(String userId, List<String> ids, boolean check);
-
 
     /**
      * 批量操作用户角色
@@ -94,7 +92,6 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @return
      */
     List<String> findUserPermission(String userId);
-
 
     /**
      * 查找角色ID列表

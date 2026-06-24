@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.enums;
 
-
 /**
  * 默认角色信息
  *
@@ -18,6 +17,5 @@ public interface SysRoleId {
      * 普通用户
      */
     String USER = "user";
-
 
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-
 /**
  * 用于获取Spring容器
  *

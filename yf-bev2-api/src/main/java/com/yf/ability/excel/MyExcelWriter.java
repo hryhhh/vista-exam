@@ -11,10 +11,10 @@ public class MyExcelWriter extends BigExcelWriter {
         try {
             return new MyExcelWriter();
         } catch (NoClassDefFoundError var1) {
-            throw new DependencyException((Throwable) ObjectUtil.defaultIfNull(var1.getCause(), var1), "You need to add dependency of 'poi-ooxml' to your project, and version >= 4.1.2", new Object[0]);
+            throw new DependencyException((Throwable) ObjectUtil.defaultIfNull(var1.getCause(), var1),
+                    "You need to add dependency of 'poi-ooxml' to your project, and version >= 4.1.2", new Object[0]);
         }
     }
-
 
     @Override
     public BigExcelWriter autoSizeColumnAll() {

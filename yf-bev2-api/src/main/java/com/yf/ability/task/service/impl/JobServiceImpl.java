@@ -29,12 +29,10 @@ public class JobServiceImpl implements JobService {
      */
     private final SchedulerFactoryBean schedulerFactoryBean;
 
-
     @PostConstruct
     public void init() {
         this.scheduler = schedulerFactoryBean.getScheduler();
     }
-
 
     @Override
     public void addCronJob(Class<? extends Job> jobClass, String jobName, String jobGroup, String cron, String data) {
@@ -48,16 +46,17 @@ public class JobServiceImpl implements JobService {
 
             log.info("++++++++++构建任务：{},{},{},{},{} ", jobClass.toString(), jobName, jobGroup, cron, data);
 
-            //构建job信息
+            // 构建job信息
             jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroup).build();
-            //用JopDataMap来传递数据
+            // 用JopDataMap来传递数据
             jobDetail.getJobDataMap().put(TASK_DATA, data);
 
-            //表达式调度构建器(即任务执行的时间,每5秒执行一次)
+            // 表达式调度构建器(即任务执行的时间,每5秒执行一次)
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
 
-            //按新的cronExpression表达式构建一个新的trigger
-            CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroup).withSchedule(scheduleBuilder).build();
+            // 按新的cronExpression表达式构建一个新的trigger
+            CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroup)
+                    .withSchedule(scheduleBuilder).build();
             scheduler.scheduleJob(jobDetail, trigger);
 
         } catch (Exception e) {
@@ -75,7 +74,6 @@ public class JobServiceImpl implements JobService {
 
         this.addCronJob(jobClass, jobName, jobGroup, CronUtils.dateToCron(cl.getTime()), data);
     }
-
 
     @Override
     public void pauseJob(String jobName, String jobGroup) {

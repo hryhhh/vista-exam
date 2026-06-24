@@ -25,9 +25,7 @@ public class ExamDetailDTO extends ExamDTO {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "组卷规则列表")
     private List<ExamRuleDTO> ruleList;
-
 
 }

@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 /**
  * Shiro配置类
  *
@@ -118,7 +117,7 @@ public class ShiroConfig {
         defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
         subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
         securityManager.setSubjectDAO(subjectDAO);
-        //自定义缓存实现,使用redis
+        // 自定义缓存实现,使用redis
         securityManager.setCacheManager(redisCacheManager());
         securityManager.setRealm(myRealm);
         return securityManager;
@@ -144,7 +143,8 @@ public class ShiroConfig {
     }
 
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
@@ -160,9 +160,9 @@ public class ShiroConfig {
         log.info("++++++++++初始化缓存管理器:RedisCacheManager");
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
-        //redis中针对不同用户缓存(此处的id需要对应user实体中的id字段,用于唯一标识)
+        // redis中针对不同用户缓存(此处的id需要对应user实体中的id字段,用于唯一标识)
         redisCacheManager.setPrincipalIdFieldName("id");
-        //用户权限信息缓存时间
+        // 用户权限信息缓存时间
         redisCacheManager.setExpire(Integer.MAX_VALUE);
         return redisCacheManager;
     }

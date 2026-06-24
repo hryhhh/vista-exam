@@ -40,7 +40,6 @@ public class ImportExcel {
      */
     private List<Map<String, Object>> dataList = new ArrayList<>();
 
-
     /**
      * 处理数据
      *
@@ -63,7 +62,6 @@ public class ImportExcel {
                 return;
             }
 
-
             // 对应数据成名称-值
             Map<String, Object> map = new HashMap<>();
             for (int i = 0; i < rowList.size(); i++) {
@@ -72,7 +70,6 @@ public class ImportExcel {
                 }
                 map.put(headerList.get(i), rowList.get(i));
             }
-
 
             // 加入列表
             this.addToList(map);
@@ -116,7 +113,6 @@ public class ImportExcel {
         this(file, 1);
     }
 
-
     /**
      * 读取文件，表头行号索引从0开始，即excel行号-1
      *
@@ -141,7 +137,6 @@ public class ImportExcel {
         }
     }
 
-
     /**
      * 反射java类，形成一个表头名称<-->java字段的Map
      *
@@ -155,7 +150,6 @@ public class ImportExcel {
 
         // 标题对应注解
         Map<String, Field> fieldMap = new HashMap<>();
-
 
         for (Field field : fields) {
             if (!field.isAccessible()) {
@@ -226,7 +220,6 @@ public class ImportExcel {
         }
         return list;
     }
-
 
     /**
      * 数据字典转换

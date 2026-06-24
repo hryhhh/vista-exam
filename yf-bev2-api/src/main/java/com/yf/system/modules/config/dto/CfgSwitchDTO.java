@@ -19,7 +19,6 @@ public class CfgSwitchDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "功能名称")
     private String id;
 

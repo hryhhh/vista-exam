@@ -17,7 +17,6 @@ import java.io.Serializable;
 @Schema(name = "密码修改请求类", description = "密码修改请求类")
 public class SysUserPassReqDTO implements Serializable {
 
-
     @Schema(description = "旧密码")
     private String oldPass;
 

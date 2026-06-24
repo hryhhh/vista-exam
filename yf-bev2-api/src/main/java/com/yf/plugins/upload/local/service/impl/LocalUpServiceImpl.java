@@ -26,7 +26,6 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * 本地上传插件
  *
@@ -36,7 +35,6 @@ import java.util.regex.Pattern;
 @Service
 @RequiredArgsConstructor
 public class LocalUpServiceImpl implements UploadService {
-
 
     /**
      * 插件唯一标识
@@ -75,7 +73,6 @@ public class LocalUpServiceImpl implements UploadService {
         }
     }
 
-
     @Override
     public String upload(String localFile) {
         // 查找上传配置
@@ -108,7 +105,6 @@ public class LocalUpServiceImpl implements UploadService {
         }
     }
 
-
     @Override
     public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -128,7 +124,7 @@ public class LocalUpServiceImpl implements UploadService {
 
         try {
 
-            //获取MimeType
+            // 获取MimeType
             Tika tika = new Tika();
             String mimeType = tika.detect(file);
             response.setContentType(mimeType);
@@ -163,7 +159,6 @@ public class LocalUpServiceImpl implements UploadService {
         return JsonHelper.parseObject(str, LocalConfig.class);
     }
 
-
     /**
      * 构造返回
      *
@@ -172,13 +167,12 @@ public class LocalUpServiceImpl implements UploadService {
      */
     private UploadRespDTO generateResult(LocalConfig conf, String fileName) {
 
-        //获取加速域名
+        // 获取加速域名
         String domain = conf.getVisitUrl();
 
         // 返回结果
         return new UploadRespDTO(domain + Constant.FILE_PREFIX + fileName);
     }
-
 
     /**
      * 获取真实物理文件地址

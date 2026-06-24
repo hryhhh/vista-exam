@@ -3,7 +3,6 @@ package com.yf.system.modules.user.utils;
 import com.yf.base.utils.Md5Util;
 import lombok.extern.log4j.Log4j2;
 
-
 /**
  * MD5签名验证工具
  *
@@ -54,7 +53,6 @@ public class SignUtils {
         return sign;
     }
 
-
     /**
      * 构建跳转URL
      *
@@ -70,7 +68,8 @@ public class SignUtils {
         Long timestamp = System.currentTimeMillis() / 1000;
         String token = generateToken(userName, timestamp);
         // 构建URL
-        String url = String.format("%s/api/sys/user/sync-login?userName=%s&realName=%s&timestamp=%s&departs=%s&role=%s&sign=%s",
+        String url = String.format(
+                "%s/api/sys/user/sync-login?userName=%s&realName=%s&timestamp=%s&departs=%s&role=%s&sign=%s",
                 host,
                 userName,
                 realName,
@@ -84,7 +83,8 @@ public class SignUtils {
 
     public static void main(String[] args) {
         // 构建跳转地址
-        String url = generateUrl("http://120.211.98.242:18088", "zhangsan202204143", "可能乱码04143", "student", "北京云帆,技术部");
+        String url = generateUrl("http://120.211.98.242:18088", "zhangsan202204143", "可能乱码04143", "student",
+                "北京远见,技术部");
         log.info("跳转地址：" + url);
     }
 }

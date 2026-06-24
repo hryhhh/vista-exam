@@ -25,8 +25,8 @@ import java.util.List;
  * @since 2025-04-14 17:40
  */
 @Service
-public class PaperQuAnswerServiceImpl extends ServiceImpl<PaperQuAnswerMapper, PaperQuAnswer> implements PaperQuAnswerService {
-
+public class PaperQuAnswerServiceImpl extends ServiceImpl<PaperQuAnswerMapper, PaperQuAnswer>
+        implements PaperQuAnswerService {
 
     /**
      * 根据试卷和ID查找选项列表，用于判题

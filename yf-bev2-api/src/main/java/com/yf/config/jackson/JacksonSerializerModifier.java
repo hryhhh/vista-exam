@@ -17,17 +17,18 @@ import java.util.List;
 public class JacksonSerializerModifier extends BeanSerializerModifier {
 
     @Override
-    public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
+    public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc,
+            List<BeanPropertyWriter> beanProperties) {
         for (BeanPropertyWriter beanProperty : beanProperties) {
 
             // 数据字典翻译
             Dict dict = beanProperty.getAnnotation(Dict.class);
             if (dict != null) {
-                DataDictFilter dictFieldSerializer = new DataDictFilter(beanProperty.getName(), dict.dicCode(), dict.dictTable(), dict.dicText());
+                DataDictFilter dictFieldSerializer = new DataDictFilter(beanProperty.getName(), dict.dicCode(),
+                        dict.dictTable(), dict.dicText());
                 beanProperty.assignSerializer(dictFieldSerializer);
             }
         }
-
 
         return beanProperties;
     }

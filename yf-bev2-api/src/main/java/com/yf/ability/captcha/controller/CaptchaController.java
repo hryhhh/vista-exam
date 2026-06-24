@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.UUID;
 
-
 /**
  * <p>
  * 图形验证码生成
@@ -37,9 +36,7 @@ public class CaptchaController extends BaseController {
     @GetMapping("/gen")
     @Operation(summary = "验证码图片")
     @Parameters({
-            @Parameter(name = "key", description = "验证码ID,前端自行使用UUID生成，务必确保整个系统不重复",
-                    example = "873d327b-00a1-441c-8509-fd51233654dc",
-                    required = true)
+            @Parameter(name = "key", description = "验证码ID,前端自行使用UUID生成，务必确保整个系统不重复", example = "873d327b-00a1-441c-8509-fd51233654dc", required = true)
     })
     public void captcha(HttpServletResponse response, @RequestParam("key") String key) throws Exception {
 

@@ -1,4 +1,4 @@
-# **云帆考试系统-v2版**
+# **远见在线考试系统-v2版**
 
 ![Static Badge](https://img.shields.io/badge/Springboot-3.0-red)
 ![Static Badge](https://img.shields.io/badge/Vue-3.0-yellow)
@@ -7,7 +7,7 @@
 
 
 # 项目简介
-秉承一贯的开源理念，云帆考试系统在原有旧项目的基础上（旧版移步：[https://gitee.com/vandc/yf-exam-lite](https://gitee.com/vandc/yf-exam-lite)）再次升级，本次升级不管是从后端还是前台，都采用全新的技术栈来开发；后端采用Java17+SpringBoot3.0，前端使用Vue3.0+TypeScript+ElementPlus；项目实现了前后端的完整考试流程，基础功能组件完善可用，便于同学们对前瞻技术的体验和学习研究，感谢关注本项目！  
+秉承一贯的开源理念，远见在线考试系统在原有旧项目的基础上（旧版移步：[https://gitee.com/vandc/yf-exam-lite](https://gitee.com/vandc/yf-exam-lite)）再次升级，本次升级不管是从后端还是前台，都采用全新的技术栈来开发；后端采用Java17+SpringBoot3.0，前端使用Vue3.0+TypeScript+ElementPlus；项目实现了前后端的完整考试流程，基础功能组件完善可用，便于同学们对前瞻技术的体验和学习研究，感谢关注本项目！  
 
 
 # 技术栈

@@ -61,7 +61,6 @@ public interface RedisService {
      */
     String getString(String key);
 
-
     /**
      * 设置缓存值
      *

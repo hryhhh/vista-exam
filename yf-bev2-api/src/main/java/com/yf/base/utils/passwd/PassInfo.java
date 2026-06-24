@@ -9,10 +9,10 @@ package com.yf.base.utils.passwd;
  */
 public class PassInfo {
 
-    //密码随机串码
+    // 密码随机串码
     private String salt;
 
-    //MD5后的密码
+    // MD5后的密码
     private String password;
 
     public PassInfo(String salt, String password) {
@@ -37,4 +37,3 @@ public class PassInfo {
         this.password = password;
     }
 }
-

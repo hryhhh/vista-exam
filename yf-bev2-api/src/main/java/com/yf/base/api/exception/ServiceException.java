@@ -1,11 +1,9 @@
 package com.yf.base.api.exception;
 
-
 import com.yf.base.api.api.ApiError;
 import com.yf.base.api.api.ApiRest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
 
 /**
  * 通用异常处理类
@@ -25,7 +23,6 @@ public class ServiceException extends RuntimeException {
      * 错误消息
      */
     private String msg;
-
 
     /**
      * 从结果初始化
@@ -56,7 +53,6 @@ public class ServiceException extends RuntimeException {
         this.code = 1;
         this.msg = msg;
     }
-
 
     @Override
     public String getMessage() {

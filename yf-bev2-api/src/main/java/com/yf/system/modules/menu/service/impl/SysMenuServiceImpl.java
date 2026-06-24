@@ -46,11 +46,9 @@ import java.util.Map;
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
-
     private final SysRoleMenuService sysRoleMenuService;
 
     private final SysUserRoleService sysUserRoleService;
-
 
     @CacheEvict(value = CacheKey.MENU, allEntries = true)
     @Transactional(rollbackFor = Exception.class)
@@ -67,7 +65,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         } else {
             reqDTO.setSort(null);
         }
-
 
         SysMenu entity = new SysMenu();
         BeanMapper.copy(reqDTO, entity);
@@ -89,7 +86,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @CacheEvict(value = CacheKey.MENU, allEntries = true)
     @Override
     public void delete(List<String> ids) {
-        //查询条件
+        // 查询条件
         QueryWrapper<SysMenu> wrapper = new QueryWrapper<>();
         wrapper.lambda().in(SysMenu::getParentId, ids);
         long count = this.count(wrapper);
@@ -99,7 +96,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
         this.removeByIds(ids);
     }
-
 
     @Cacheable(value = CacheKey.MENU, key = "'routes-'+#p0")
     @Override
@@ -130,7 +126,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             childMap.put(parentId, list);
         }
 
-
         // 获取顶级的
         List<RouteRespDTO> topList = childMap.get("0");
         if (!CollectionUtils.isEmpty(topList)) {
@@ -149,12 +144,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         return baseMapper.listPermissionByRoles(roleIds);
     }
 
-
     @Override
     public List<MenuTreeRespDTO> listTree() {
         return baseMapper.listTree();
     }
-
 
     @CacheEvict(value = CacheKey.MENU, allEntries = true)
     @Override
@@ -164,18 +157,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         SysMenu form = this.getById(reqDTO.getForm());
         SysMenu to = this.getById(reqDTO.getTo());
 
-
         // 跨级别拖拽
-        if (!form.getParentId().equals(to.getParentId()) || (to.getParentId().equals("0") && form.getParentId().equals("0"))) {
+        if (!form.getParentId().equals(to.getParentId())
+                || (to.getParentId().equals("0") && form.getParentId().equals("0"))) {
 
             // 只允许：目录-->目录 | 菜单-->目录 | 菜单-->菜单(旁边)
             if (!(form.getMenuType().equals(MenuType.DIR) && to.getMenuType().equals(MenuType.DIR))
                     && !(form.getMenuType().equals(MenuType.MENU) && to.getMenuType().equals(MenuType.DIR))
-                    && !(form.getMenuType().equals(MenuType.MENU) && to.getMenuType().equals(MenuType.MENU) && !"inner".equals(reqDTO.getDropType()))
-            ) {
+                    && !(form.getMenuType().equals(MenuType.MENU) && to.getMenuType().equals(MenuType.MENU)
+                            && !"inner".equals(reqDTO.getDropType()))) {
                 throw new ServiceException("啊啊啊，太乱了，不能这样拽！");
             }
-
 
             int sort = 0;
 
@@ -220,7 +212,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         }
     }
 
-
     /**
      * 递归去做填充数据
      *
@@ -234,7 +225,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             item.setHidden(null);
         }
 
-        //设置子类
+        // 设置子类
         if (map.containsKey(item.getId())) {
 
             List<RouteRespDTO> children = map.get(item.getId());

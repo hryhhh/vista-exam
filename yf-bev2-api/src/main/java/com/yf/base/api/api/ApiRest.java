@@ -1,6 +1,5 @@
 package com.yf.base.api.api;
 
-
 import com.yf.base.api.exception.ServiceException;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -33,7 +32,6 @@ public class ApiRest<T> {
      */
     @Schema(description = "响应内容")
     protected T data;
-
 
     /**
      * 是否成功

@@ -17,7 +17,6 @@ import lombok.EqualsAndHashCode;
 @Schema(name = "token通用请求类", description = "token通用请求类")
 public class BaseTokenReqDTO extends BaseDTO {
 
-
     @Schema(description = "令牌")
     private String token;
 

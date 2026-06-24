@@ -41,5 +41,4 @@ public class SysDepartTreeDTO extends SysDepartDTO {
         return this.getDeptCode();
     }
 
-
 }

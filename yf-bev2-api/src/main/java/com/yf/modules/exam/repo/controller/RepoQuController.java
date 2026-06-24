@@ -40,7 +40,7 @@ public class RepoQuController extends BaseController {
      * @return
      */
     @Operation(summary = "添加或修改")
-    @RequiresPermissions(value = {"repo:qu:add", "repo:qu:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "repo:qu:add", "repo:qu:edit" }, logical = Logical.OR)
     @PostMapping("/save")
     public ApiRest<?> save(@RequestBody RepoQuDetailDTO reqDTO) {
         repoQuService.save(reqDTO);
@@ -57,7 +57,7 @@ public class RepoQuController extends BaseController {
     @RequiresPermissions("repo:qu:delete")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         repoQuService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -87,7 +87,7 @@ public class RepoQuController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<RepoQuDTO>> paging(@RequestBody PagingReqDTO<RepoQuListReqDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<RepoQuDTO> page = repoQuService.paging(reqDTO);
 
         return super.success(page);

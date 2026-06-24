@@ -1,6 +1,5 @@
 package com.yf.base.api.api;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -19,7 +18,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public enum ApiError implements Serializable {
 
-
     /**
      * 通用错误，接口参数不全
      */
@@ -36,7 +34,6 @@ public enum ApiError implements Serializable {
     ERROR_20010001("试题被删除，无法继续考试！"),
     ERROR_20010002("您有正在进行的考试！"),
 
-
     ERROR_90010001("账号不存在，请确认！"),
     ERROR_90010002("账号或密码错误！"),
     ERROR_90010003("至少要包含一个角色！"),
@@ -44,7 +41,6 @@ public enum ApiError implements Serializable {
     ERROR_90010005("账号被禁用，请联系管理员！"),
     ERROR_90010006("账号待审核，请耐心等待！"),
     ERROR_90010007("旧密码不正确，请确认！"),
-
 
     ERROR_60000001("数据不存在！");
 

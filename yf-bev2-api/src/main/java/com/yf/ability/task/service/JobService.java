@@ -10,7 +10,6 @@ import org.quartz.Job;
  */
 public interface JobService {
 
-
     /**
      * 任务数据
      */

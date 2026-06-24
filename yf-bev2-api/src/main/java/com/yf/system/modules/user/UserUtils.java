@@ -1,6 +1,5 @@
 package com.yf.system.modules.user;
 
-
 import com.yf.ability.shiro.dto.SysUserLoginDTO;
 import com.yf.base.api.api.ApiError;
 import com.yf.base.api.exception.ServiceException;
@@ -14,7 +13,6 @@ import java.util.List;
  * @author bool
  */
 public class UserUtils {
-
 
     /**
      * 获取用户信息
@@ -59,7 +57,6 @@ public class UserUtils {
         }
         return null;
     }
-
 
     /**
      * 获取用户的角色列表

@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.enums;
 
-
 /**
  * 登录类型
  *
@@ -13,7 +12,6 @@ public interface LoginType {
      * 微信登录
      */
     String WECHAT = "wechat";
-
 
     /**
      * 企业微信

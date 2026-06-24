@@ -25,7 +25,6 @@ public class ZipUtils {
      */
     private static final int BUFFER_SIZE = 1024;
 
-
     /**
      * 压缩文件
      *
@@ -70,7 +69,6 @@ public class ZipUtils {
             compressDir(src, zos, baseDir);
         }
     }
-
 
     /**
      * 压缩文件

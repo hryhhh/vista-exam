@@ -25,12 +25,11 @@ import java.util.List;
 @Service
 public class ExamRuleServiceImpl extends ServiceImpl<ExamRuleMapper, ExamRule> implements ExamRuleService {
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveAll(String examId, String repoId, List<ExamRuleDTO> ruleList) {
 
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<ExamRule> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(ExamRule::getExamId, examId);
         this.remove(wrapper);
@@ -57,23 +56,23 @@ public class ExamRuleServiceImpl extends ServiceImpl<ExamRuleMapper, ExamRule> i
     @Override
     public List<ExamRuleDTO> listByExam(String examId) {
 
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<ExamRule> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(ExamRule::getExamId, examId);
 
-        //转换并返回
+        // 转换并返回
         List<ExamRule> list = this.list(wrapper);
         if (CollectionUtils.isEmpty(list)) {
             return List.of();
         }
 
-        //转换数据
+        // 转换数据
         return BeanMapper.mapList(list, ExamRuleDTO.class);
     }
 
     @Override
     public void deleteByExams(List<String> examIds) {
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<ExamRule> wrapper = new QueryWrapper<>();
         wrapper.lambda().in(ExamRule::getExamId, examIds);
         this.remove(wrapper);

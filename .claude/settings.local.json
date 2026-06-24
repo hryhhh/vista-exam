@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I{} sh -c 'echo \"=== {} ===\"; grep -n \"远见\\\\|exam\\\\|Exam\\\\|yfhl\" \"{}\" 2>/dev/null')",
+      "Bash(docker --version)",
+      "Bash(docker compose *)",
+      "Bash(echo \"exit: $?\")"
+    ]
+  }
+}

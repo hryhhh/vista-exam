@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -42,17 +41,18 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
     @Override
     public IPage<SysUserRoleDTO> paging(PagingReqDTO<SysUserRoleDTO> reqDTO) {
 
-        //创建分页对象
+        // 创建分页对象
         IPage<SysUserRole> query = reqDTO.toPage();
 
-        //查询条件
+        // 查询条件
         QueryWrapper<SysUserRole> wrapper = new QueryWrapper<>();
 
-        //获得数据
+        // 获得数据
         IPage<SysUserRole> page = this.page(query, wrapper);
 
-        //转换结果
-        return JsonHelper.parseObject(page, new TypeReference<Page<SysUserRoleDTO>>() {});
+        // 转换结果
+        return JsonHelper.parseObject(page, new TypeReference<Page<SysUserRoleDTO>>() {
+        });
     }
 
     @Override
@@ -60,11 +60,9 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         return baseMapper.listByUser(userId);
     }
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveRoles(String userId, List<String> ids, boolean check) {
-
 
         if (check) {
             this.checkRoles(ids);
@@ -104,7 +102,6 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
                 this.remove(wrapper);
             }
         }
-
 
         // 添加角色
         if (reqDTO.getFlag().equals(1)) {
@@ -150,7 +147,6 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         return baseMapper.findUserPermission(userId);
     }
 
-
     @Override
     public List<String> listRoleIds(String userId) {
         // 角色是要
@@ -163,9 +159,9 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
         return ids;
     }
 
-
     /**
      * 校验角色
+     * 
      * @param ids
      */
     /**
@@ -185,11 +181,9 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
 
         long count = sysRoleService.count(wrapper);
 
-
         if (count != ids.size()) {
             throw new ServiceException("角色不存在或者存在越级授权！");
         }
     }
-
 
 }

@@ -24,7 +24,6 @@ public class ExamRecordListReqDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "考试名称")
     private String title;
 

@@ -26,7 +26,6 @@ import java.util.Map;
 @Service
 public class CfgSwitchServiceImpl extends ServiceImpl<CfgSwitchMapper, CfgSwitch> implements CfgSwitchService {
 
-
     @Cacheable(value = CacheKey.SWITCH, key = "'all'")
     @Override
     public Map<String, Object> allMap() {

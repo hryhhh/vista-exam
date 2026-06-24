@@ -19,7 +19,6 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
-
     /**
      * 根据角色
      *
@@ -64,5 +63,3 @@ public interface SysMenuService extends IService<SysMenu> {
      */
     void delete(List<String> ids);
 }
-
-

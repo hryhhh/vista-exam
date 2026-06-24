@@ -21,9 +21,9 @@ import java.util.List;
  */
 public interface PaperQuService extends IService<PaperQu> {
 
-
     /**
-     *  保存试卷题目，用于考试
+     * 保存试卷题目，用于考试
+     * 
      * @param paperId
      * @param perScore
      * @param quList

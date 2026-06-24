@@ -97,7 +97,6 @@ public class RedisServiceImpl implements RedisService {
         return hasGet != null && hasGet;
     }
 
-
     /**
      * 获得一个锁
      *
@@ -130,7 +129,6 @@ public class RedisServiceImpl implements RedisService {
         return redisTemplate.opsForValue().get(key);
     }
 
-
     /**
      * 设置缓存值
      *
@@ -149,7 +147,6 @@ public class RedisServiceImpl implements RedisService {
         }
     }
 
-
     /**
      * 设置缓存
      *
@@ -160,7 +157,6 @@ public class RedisServiceImpl implements RedisService {
      */
     @Override
     public boolean set(String key, String value, Long time) {
-
 
         try {
             if (time > 0) {

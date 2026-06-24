@@ -22,7 +22,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * JAVA多线程断点下载工具，支持多线程下载和断点续传
  *
@@ -82,7 +81,6 @@ public class Downloader {
      */
     private ScheduledExecutorService executorService;
 
-
     /**
      * 构造下载器，传入下载地址和文件保存路径
      *
@@ -102,16 +100,17 @@ public class Downloader {
      */
     public void download() throws Exception {
 
-        //开启断点下载
+        // 开启断点下载
         if (checkNeedContinue()) {
             this.continueDownload();
         } else {
-            //开启全新的下载
+            // 开启全新的下载
             this.newDownload();
         }
 
-        //运行定时任务，保存下载进度
-        executorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("scheduled-pool-%d").daemon(true).build());
+        // 运行定时任务，保存下载进度
+        executorService = new ScheduledThreadPoolExecutor(1,
+                new BasicThreadFactory.Builder().namingPattern("scheduled-pool-%d").daemon(true).build());
         executorService.scheduleAtFixedRate(() -> saveProcess(), 0, 800, TimeUnit.MILLISECONDS);
     }
 
@@ -122,21 +121,21 @@ public class Downloader {
      * @throws Exception
      */
     private void newDownload() throws Exception {
-        //连接文件、确定文件头的大小
+        // 连接文件、确定文件头的大小
         CloseableHttpClient client = HttpClients.createDefault();
         HttpGet get = new HttpGet(url);
         CloseableHttpResponse response = client.execute(get);
 
         int statusCode = response.getStatusLine().getStatusCode();
-        //如果URL存在重定向，则获取重定向后的URL拿来下载
+        // 如果URL存在重定向，则获取重定向后的URL拿来下载
         if (statusCode != RESPONSE_OK) {
             throw new Exception("URL响应状态不正确：" + statusCode);
         }
 
-        //获取文件的长度
+        // 获取文件的长度
         fileLength = response.getEntity().getContentLength();
 
-        //每个线程下载的数据
+        // 每个线程下载的数据
         long pie = fileLength / threadCount;
         long left = fileLength % threadCount;
 
@@ -144,17 +143,17 @@ public class Downloader {
 
             long start = i * pie;
             long end = (i + 1) * pie;
-            //最后的线程连剩下的也一起下了
+            // 最后的线程连剩下的也一起下了
             if ((i + 1) == threadCount) {
                 end += left;
             }
-            //第二段开始索引+1
+            // 第二段开始索引+1
             if (i > 0) {
                 start += 1;
             }
 
             logger.info("start download form bytes {0} to {1}", start, end);
-            //加入线程池下载
+            // 加入线程池下载
             String threadName = MD5Util.MD5(url) + "-" + i;
             DownloadThread thread = new DownloadThread(url, dist, start, end);
             thread.setName(threadName);
@@ -178,17 +177,16 @@ public class Downloader {
         return false;
     }
 
-
     /**
      * 检测是否需要断点下载
      *
      * @return
      */
     public boolean checkNeedContinue() {
-        //检查是否需要断点下载
+        // 检查是否需要断点下载
         File tempFile = new File(dist + TEMP_FILE_SUFFIX);
 
-        //开启断点下载
+        // 开启断点下载
         return tempFile.exists();
     }
 
@@ -197,17 +195,17 @@ public class Downloader {
      */
     private void continueDownload() {
 
-        //开启断点下载
+        // 开启断点下载
         String json = TextFileUtils.readText(dist + TEMP_FILE_SUFFIX);
         DownloadTemp info = JsonHelper.parseObject(json, DownloadTemp.class);
         this.fileLength = info.getFileLength();
 
-        //如果信息读取不正确或者没有要下载的线程，直接返回
+        // 如果信息读取不正确或者没有要下载的线程，直接返回
         if (info == null || info.getThreads() != null || info.getThreads().size() == 0) {
             return;
         }
 
-        //根据文件的存储重新设置下载线程
+        // 根据文件的存储重新设置下载线程
         this.threadCount = info.getThreads().size();
         this.threads = new DownloadThread[this.threadCount];
 
@@ -222,7 +220,6 @@ public class Downloader {
 
     }
 
-
     /**
      * 保存下载进度
      */
@@ -232,9 +229,9 @@ public class Downloader {
         long downloaded = 0;
 
         for (DownloadThread thread : this.threads) {
-            //保存线程加载信息
+            // 保存线程加载信息
             records.add(thread.toTemp());
-            //累计进度
+            // 累计进度
             downloaded += thread.getLoaded();
         }
 
@@ -243,13 +240,12 @@ public class Downloader {
         info.setUrl(url);
         info.setThreads(records);
 
-        //写入临时文件以备断点下载
+        // 写入临时文件以备断点下载
         TextFileUtils.write(dist + TEMP_FILE_SUFFIX, JsonHelper.toJson(info));
 
-        //已下载的数量
+        // 已下载的数量
         this.downloaded = downloaded;
     }
-
 
     /**
      * 获取文件的大小
@@ -269,7 +265,6 @@ public class Downloader {
         return downloaded;
     }
 
-
     /**
      * 测试方法，用于测试下载
      *
@@ -278,33 +273,31 @@ public class Downloader {
      */
     public static void main(String[] args) throws Exception {
 
-
-        //下载参数
-//        String url = "https://cdn-file1.sitebuilding.cn/resource.zip";
-//        String dist = "/Users/bool/Desktop/resource.zip";
+        // 下载参数
+        // String url = "https://cdn-file1.sitebuilding.cn/resource.zip";
+        // String dist = "/Users/bool/Desktop/resource.zip";
 
         String url = "https://cdn-file1.sitebuilding.cn/itranslate.dmg";
         String dist = "/Users/bool/Desktop/itranslate.dmg";
 
-
-        //开启下载
+        // 开启下载
         Downloader downloader = new Downloader(url, dist);
         downloader.download();
 
-        //如果线程还是活动的，则计算下载进度
+        // 如果线程还是活动的，则计算下载进度
         while (downloader.isDownloading()) {
-            //等待获取下载进度
+            // 等待获取下载进度
             Thread.sleep(800);
-            //计算下载进度
+            // 计算下载进度
             float percent = downloader.getDownloaded() * 100f / downloader.getFileLength();
             log.info("+++++下载进度为:" + percent + "%");
         }
 
-        //可以做一些文件的完整性校验
+        // 可以做一些文件的完整性校验
         String md5 = MD5Util.getFileMD5(new File(dist));
         log.info("+++++下载件MD5:" + md5);
 
-        //比较源文件的MD5
+        // 比较源文件的MD5
         String example = "/Users/bool/Downloads/itranslate.dmg";
         String exMD5 = MD5Util.getFileMD5(new File(example));
         log.info("+++++参考件MD5:" + exMD5);

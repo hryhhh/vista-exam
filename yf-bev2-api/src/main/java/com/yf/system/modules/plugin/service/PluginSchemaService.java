@@ -14,7 +14,6 @@ import com.yf.system.modules.plugin.entity.PluginSchema;
  */
 public interface PluginSchemaService extends IService<PluginSchema> {
 
-
     /**
      * 查找详情
      *

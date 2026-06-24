@@ -39,8 +39,8 @@ public class DataDictFilter extends JsonSerializer<Object> {
     /**
      * 获取字典业务类
      */
-    private SysDicValueService sysDicValueService = SpringUtils.getBean("sysDicValueServiceImpl", SysDicValueService.class);
-
+    private SysDicValueService sysDicValueService = SpringUtils.getBean("sysDicValueServiceImpl",
+            SysDicValueService.class);
 
     @Override
     public void serialize(Object o, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
@@ -61,7 +61,6 @@ public class DataDictFilter extends JsonSerializer<Object> {
             }
         }
     }
-
 
     /**
      * 进行数据字典的翻译

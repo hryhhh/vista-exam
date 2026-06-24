@@ -48,7 +48,6 @@ public class PaperQuController extends BaseController {
         return super.success(dto);
     }
 
-
     /**
      * 查找答题卡列表
      *

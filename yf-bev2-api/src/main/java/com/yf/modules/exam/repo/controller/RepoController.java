@@ -41,7 +41,7 @@ public class RepoController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"repo:repo:edit", "repo:repo:add"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "repo:repo:edit", "repo:repo:add" }, logical = Logical.OR)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
     public ApiRest<?> save(@RequestBody RepoDTO reqDTO) {
@@ -59,7 +59,7 @@ public class RepoController extends BaseController {
     @Operation(summary = "删除题库")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         repoService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -89,7 +89,7 @@ public class RepoController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<RepoListRespDTO>> paging(@RequestBody PagingReqDTO<RepoDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<RepoListRespDTO> page = repoService.paging(reqDTO);
 
         return super.success(page);

@@ -43,7 +43,7 @@ public class DownloadUtil {
             dirFile.mkdirs();
         }
 
-        //获得文件名
+        // 获得文件名
         if (StringUtils.isEmpty(fileName)) {
             fileName = extractUrlFileName(url);
         }
@@ -84,7 +84,6 @@ public class DownloadUtil {
         }
         return null;
     }
-
 
     /**
      * 从URL中提取文件名称

@@ -31,18 +31,18 @@ public class PluginDataServiceImpl extends ServiceImpl<PluginDataMapper, PluginD
     @Override
     public IPage<PluginDataDTO> paging(PagingReqDTO<PluginDataDTO> reqDTO) {
 
-        //查询条件
+        // 查询条件
         QueryWrapper<PluginData> wrapper = new QueryWrapper<>();
-        //获得数据
+        // 获得数据
         IPage<PluginData> page = this.page(reqDTO.toPage(), wrapper);
-        //转换结果
-        return JsonHelper.parseObject(page, new TypeReference<Page<PluginDataDTO>>() {});
+        // 转换结果
+        return JsonHelper.parseObject(page, new TypeReference<Page<PluginDataDTO>>() {
+        });
     }
-
 
     @Override
     public void save(PluginDataDTO reqDTO) {
-        //复制参数
+        // 复制参数
         PluginData entity = new PluginData();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);
@@ -50,7 +50,7 @@ public class PluginDataServiceImpl extends ServiceImpl<PluginDataMapper, PluginD
 
     @Override
     public String findConfig(String code) {
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<PluginData> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(PluginData::getCode, code);
 
@@ -64,7 +64,7 @@ public class PluginDataServiceImpl extends ServiceImpl<PluginDataMapper, PluginD
 
     @Override
     public String findServiceClazz(String groupId) {
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<PluginData> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .eq(PluginData::getGroupId, groupId)

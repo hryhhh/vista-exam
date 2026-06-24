@@ -21,14 +21,15 @@ import java.util.Map;
 @Log4j2
 public class DesensitizeSerializer extends JsonSerializer<String> {
 
-
     /**
      * 处理需要脱敏的字段
      */
-    private final List<String> keys = Arrays.asList("accessKeyId", "accessKeySecret", "appKey", "secretKey", "secretId", "pushKey", "pullKey", "accessKey");
+    private final List<String> keys = Arrays.asList("accessKeyId", "accessKeySecret", "appKey", "secretKey", "secretId",
+            "pushKey", "pullKey", "accessKey");
 
     @Override
-    public void serialize(String json, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(String json, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
+            throws IOException {
 
         Map<String, Object> map = new HashMap<>(16);
 
@@ -55,10 +56,9 @@ public class DesensitizeSerializer extends JsonSerializer<String> {
             }
         }
 
-        //自定义处理方式
+        // 自定义处理方式
         jsonGenerator.writeObject(map);
     }
-
 
     /**
      * 对字符串进行脱敏，在字符串中间用*号代替，字符串中间有一般的长度会被替代
@@ -103,7 +103,6 @@ public class DesensitizeSerializer extends JsonSerializer<String> {
         sb.append(text.substring(end));
         return sb.toString();
     }
-
 
     public static void main(String[] args) {
 

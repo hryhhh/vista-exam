@@ -1,6 +1,5 @@
 package com.yf.plugins.upload.local.dto;
 
-
 import com.yf.base.api.api.dto.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

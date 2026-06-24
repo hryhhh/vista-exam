@@ -18,7 +18,6 @@ import java.util.List;
 @Data
 public class PagingReqDTO<T> {
 
-
     @Schema(description = "当前页码", example = "1")
     private Integer current;
 
@@ -35,7 +34,6 @@ public class PagingReqDTO<T> {
     @Schema(description = "当前用户的ID")
     private String userId;
 
-
     /**
      * 转换成MyBatis的简单分页对象
      *
@@ -49,6 +47,5 @@ public class PagingReqDTO<T> {
         page.setOrders(orders);
         return page;
     }
-
 
 }

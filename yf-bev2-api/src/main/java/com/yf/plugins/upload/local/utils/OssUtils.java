@@ -1,6 +1,5 @@
 package com.yf.plugins.upload.local.utils;
 
-
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.yf.base.utils.DateUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,19 +28,18 @@ public class OssUtils {
      */
     public static String renameFile(String fileName) {
 
-        //没有后缀名不处理
+        // 没有后缀名不处理
         if (!fileName.contains(SUFFIX_SPLIT)) {
             return fileName;
         }
 
-        //文件后缀
+        // 文件后缀
         String suffix = fileName.substring(fileName.lastIndexOf("."));
 
-        //以系统时间命名
+        // 以系统时间命名
         return IdWorker.getIdStr() + suffix;
 
     }
-
 
     /**
      * 处理新的文件路径，为上传文件预设目录，如：2021/01/01/xxx.jpg，要注意的是，前面没有斜杠
@@ -57,7 +55,7 @@ public class OssUtils {
         // 需要重命名
         fileName = OssUtils.renameFile(fileName);
 
-        //获得上传的文件夹
+        // 获得上传的文件夹
         String dir = DateUtils.formatDate(new Date(), "yyyy/MM/dd/");
 
         return new StringBuffer(dir).append(fileName).toString();
@@ -75,7 +73,7 @@ public class OssUtils {
         // 需要重命名
         fileName = OssUtils.renameFile(fileName);
 
-        //获得上传的文件夹
+        // 获得上传的文件夹
         String dir = DateUtils.formatDate(new Date(), "yyyy/MM/dd/");
 
         return new StringBuffer(dir).append(fileName).toString();
@@ -99,6 +97,5 @@ public class OssUtils {
             file.mkdirs();
         }
     }
-
 
 }

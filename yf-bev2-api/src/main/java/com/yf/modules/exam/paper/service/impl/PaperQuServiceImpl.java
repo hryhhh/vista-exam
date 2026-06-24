@@ -40,7 +40,6 @@ public class PaperQuServiceImpl extends ServiceImpl<PaperQuMapper, PaperQu> impl
 
     private final PaperQuAnswerService paperQuAnswerService;
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveToPaper(String paperId, BigDecimal perScore, List<RepoQuDetailDTO> quList, int startSort) {
@@ -91,8 +90,7 @@ public class PaperQuServiceImpl extends ServiceImpl<PaperQuMapper, PaperQu> impl
     @Override
     public List<PaperQuCardRespDTO> listQuCard(String paperId) {
 
-
-        //查找全部题目
+        // 查找全部题目
         QueryWrapper<PaperQu> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .select(PaperQu::getQuId, PaperQu::getQuType, PaperQu::getAnswered, PaperQu::getMark)
@@ -142,7 +140,7 @@ public class PaperQuServiceImpl extends ServiceImpl<PaperQuMapper, PaperQu> impl
         String quId = reqDTO.getQuId();
         List<String> checkedItems = reqDTO.getCheckedItems();
 
-        //查找全部题目
+        // 查找全部题目
         QueryWrapper<PaperQu> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .select(PaperQu::getId, PaperQu::getQuId, PaperQu::getQuType, PaperQu::getScore)
@@ -180,7 +178,6 @@ public class PaperQuServiceImpl extends ServiceImpl<PaperQuMapper, PaperQu> impl
         paperQu.setAnswered(CollectionUtils.isNotEmpty(checkedItems));
         this.updateById(paperQu);
 
-
         PaperQuFillRespDTO respDTO = new PaperQuFillRespDTO();
         respDTO.setFilled(paperQu.getAnswered());
         return respDTO;
@@ -203,7 +200,7 @@ public class PaperQuServiceImpl extends ServiceImpl<PaperQuMapper, PaperQu> impl
         // 快速校验
         if (Objects.equals(list1, list2)) {
             return true;
-        }  // 包括都为null的情况
+        } // 包括都为null的情况
         if (list1 == null || list2 == null) {
             return false;
         }

@@ -9,9 +9,9 @@ import com.yf.base.api.exception.ServiceException;
  */
 public class LetterUtils {
 
-
     /**
      * 根据索引获得字母
+     * 
      * @param index
      * @return
      */
@@ -24,6 +24,7 @@ public class LetterUtils {
 
     /**
      * 产生部门编号
+     * 
      * @param num
      * @return
      */

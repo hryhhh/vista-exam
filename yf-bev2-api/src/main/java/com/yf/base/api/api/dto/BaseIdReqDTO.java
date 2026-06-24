@@ -18,7 +18,6 @@ import lombok.EqualsAndHashCode;
 @Schema(name = "主键通用请求类", description = "主键通用请求类")
 public class BaseIdReqDTO extends BaseDTO {
 
-
     @Schema(description = "主键ID")
     private String id;
 

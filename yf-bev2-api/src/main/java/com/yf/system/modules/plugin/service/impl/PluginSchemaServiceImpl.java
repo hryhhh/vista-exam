@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
  * @since 2022-09-05 10:05
  */
 @Service
-public class PluginSchemaServiceImpl extends ServiceImpl<PluginSchemaMapper, PluginSchema> implements PluginSchemaService {
-
+public class PluginSchemaServiceImpl extends ServiceImpl<PluginSchemaMapper, PluginSchema>
+        implements PluginSchemaService {
 
     @Override
     public PluginSchemaDTO detail(String id) {

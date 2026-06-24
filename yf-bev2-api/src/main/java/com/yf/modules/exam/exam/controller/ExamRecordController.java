@@ -33,7 +33,6 @@ public class ExamRecordController extends BaseController {
 
     private final ExamRecordService examRecordService;
 
-
     /**
      * 分页查找
      *
@@ -45,12 +44,11 @@ public class ExamRecordController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<ExamRecordDTO>> paging(@RequestBody PagingReqDTO<ExamRecordListReqDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<ExamRecordDTO> page = examRecordService.paging(reqDTO);
 
         return super.success(page);
     }
-
 
     /**
      * 分页查找
@@ -70,7 +68,7 @@ public class ExamRecordController extends BaseController {
         // 限定查找自己的考试记录
         params.setUserId(UserUtils.getUserId());
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<ExamRecordDTO> page = examRecordService.clientPaging(reqDTO);
 
         return super.success(page);

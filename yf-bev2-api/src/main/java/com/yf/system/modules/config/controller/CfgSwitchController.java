@@ -29,7 +29,6 @@ public class CfgSwitchController extends BaseController {
 
     private final CfgSwitchService baseService;
 
-
     /**
      * 保存功能开关
      *

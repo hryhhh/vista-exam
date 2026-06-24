@@ -19,7 +19,6 @@ import java.util.List;
 @Schema(name = "通用状态请求类", description = "通用状态请求类")
 public class BaseStateReqDTO extends BaseDTO {
 
-
     @Schema(description = "要修改对象的ID列表")
     private List<String> ids;
 

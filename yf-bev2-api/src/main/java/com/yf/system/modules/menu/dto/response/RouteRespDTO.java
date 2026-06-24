@@ -17,9 +17,7 @@ import java.util.Map;
 @Schema(name = "路由响应类", description = "路由响应类")
 public class RouteRespDTO implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
-
 
     @JsonIgnore
     @Schema(description = "ID")
@@ -65,7 +63,6 @@ public class RouteRespDTO implements Serializable {
     @Schema(description = "路由属性")
     private Map<String, Object> meta;
 
-
     /**
      * 构建路由属性，用于前端展示
      *
@@ -99,6 +96,5 @@ public class RouteRespDTO implements Serializable {
 
         return meta;
     }
-
 
 }

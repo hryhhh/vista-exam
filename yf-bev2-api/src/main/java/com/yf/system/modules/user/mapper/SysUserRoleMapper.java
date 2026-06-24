@@ -50,7 +50,6 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
      */
     int countWithLevel(@Param("userIds") List<String> userIds, @Param("roleLevel") Integer roleLevel);
 
-
     /**
      * 查找最大的角色级别
      *

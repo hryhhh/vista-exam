@@ -39,8 +39,7 @@ public class SysDicServiceImpl extends ServiceImpl<SysDicMapper, SysDic> impleme
     @Override
     public IPage<SysDicDTO> paging(PagingReqDTO<SysDicDTO> reqDTO) {
 
-
-        //查询条件
+        // 查询条件
         QueryWrapper<SysDic> wrapper = new QueryWrapper<>();
 
         // 请求参数
@@ -64,10 +63,11 @@ public class SysDicServiceImpl extends ServiceImpl<SysDicMapper, SysDic> impleme
         // 按更新时间排序
         wrapper.lambda().orderByDesc(SysDic::getId);
 
-        //获得数据
+        // 获得数据
         IPage<SysDic> page = this.page(reqDTO.toPage(), wrapper);
-        //转换结果
-        return JsonHelper.parseObject(page, new TypeReference<Page<SysDicDTO>>() {});
+        // 转换结果
+        return JsonHelper.parseObject(page, new TypeReference<Page<SysDicDTO>>() {
+        });
     }
 
     @Override
@@ -86,7 +86,7 @@ public class SysDicServiceImpl extends ServiceImpl<SysDicMapper, SysDic> impleme
             throw new ServiceException("分类编码不可以重复！");
         }
 
-        //复制参数
+        // 复制参数
         SysDic entity = new SysDic();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);

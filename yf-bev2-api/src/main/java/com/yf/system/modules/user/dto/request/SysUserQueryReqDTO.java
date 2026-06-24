@@ -20,7 +20,6 @@ public class SysUserQueryReqDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "角色ID")
     private List<String> roleIds;
 

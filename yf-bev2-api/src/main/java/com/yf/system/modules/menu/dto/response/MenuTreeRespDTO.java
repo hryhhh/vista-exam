@@ -21,7 +21,6 @@ public class MenuTreeRespDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "ID")
     private String id;
 
@@ -67,6 +66,5 @@ public class MenuTreeRespDTO implements Serializable {
 
     @Schema(description = "子菜单列表")
     private List<MenuTreeRespDTO> children;
-
 
 }

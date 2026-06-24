@@ -31,5 +31,4 @@ public class ExamListReqDTO implements Serializable {
     @Schema(description = "时间查找R")
     private Date startTimeR;
 
-
 }

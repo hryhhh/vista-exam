@@ -7,7 +7,6 @@ package com.yf.system.modules.menu.eums;
  */
 public interface MenuType {
 
-
     /**
      * 目录
      */

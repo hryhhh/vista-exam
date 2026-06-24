@@ -16,7 +16,6 @@ import java.io.*;
 @Log4j2
 public class ResourceUtil {
 
-
     /**
      * 数据流转换btye[]
      *
@@ -33,7 +32,6 @@ public class ResourceUtil {
         }
         return output.toByteArray();
     }
-
 
     /**
      * 从资源文件写出流

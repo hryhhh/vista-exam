@@ -29,5 +29,4 @@ public class RepoStatRespDTO implements Serializable {
     @Schema(description = "题目数量")
     private Integer quCount;
 
-
 }

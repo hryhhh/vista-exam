@@ -16,7 +16,6 @@ import java.util.Date;
  */
 public class JwtUtils {
 
-
     /**
      * 有效期24小时
      */
@@ -48,7 +47,6 @@ public class JwtUtils {
             return false;
         }
     }
-
 
     /**
      * 从Token中解密获得用户名
@@ -88,7 +86,6 @@ public class JwtUtils {
     private static String encryptSecret(String userName) {
         return MD5Util.MD5(userName + "&" + SECRET);
     }
-
 
     /**
      * 判断Token是否到期

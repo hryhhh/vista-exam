@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.enums;
 
-
 /**
  * 用户待审核状态
  *
@@ -23,6 +22,5 @@ public interface UserState {
      * 待审核
      */
     Integer AUDIT = 2;
-
 
 }

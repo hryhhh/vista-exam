@@ -25,17 +25,17 @@ import java.util.List;
  * @since 2025-04-11 09:42
  */
 @Service
-public class RepoQuAnswerServiceImpl extends ServiceImpl<RepoQuAnswerMapper, RepoQuAnswer> implements RepoQuAnswerService {
-
+public class RepoQuAnswerServiceImpl extends ServiceImpl<RepoQuAnswerMapper, RepoQuAnswer>
+        implements RepoQuAnswerService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveAll(String quId, List<RepoQuAnswerDTO> dtoList) {
 
-        //最终要保存的列表
+        // 最终要保存的列表
         List<RepoQuAnswer> saveList = new ArrayList<>();
 
-        //已存在的标签列表
+        // 已存在的标签列表
         List<String> ids = this.findExistsList(quId);
 
         if (!CollectionUtils.isEmpty(dtoList)) {
@@ -44,7 +44,7 @@ public class RepoQuAnswerServiceImpl extends ServiceImpl<RepoQuAnswerMapper, Rep
 
             for (RepoQuAnswerDTO item : dtoList) {
 
-                //标签ID
+                // 标签ID
                 String id = item.getId();
                 RepoQuAnswer answer = new RepoQuAnswer();
                 BeanMapper.copy(item, answer);
@@ -53,16 +53,16 @@ public class RepoQuAnswerServiceImpl extends ServiceImpl<RepoQuAnswerMapper, Rep
                     answer.setTag(LetterUtils.getLetter(i));
                 }
 
-                //补全ID避免新增
+                // 补全ID避免新增
                 ids.remove(id);
                 i++;
                 saveList.add(answer);
             }
 
-            //保存标签列表
+            // 保存标签列表
             this.saveOrUpdateBatch(saveList);
 
-            //删除已移除
+            // 删除已移除
             if (!ids.isEmpty()) {
                 this.removeByIds(ids);
             }
@@ -95,7 +95,7 @@ public class RepoQuAnswerServiceImpl extends ServiceImpl<RepoQuAnswerMapper, Rep
      * @return
      */
     private List<String> findExistsList(String quId) {
-        //返回结果
+        // 返回结果
         List<String> ids = new ArrayList<>();
 
         QueryWrapper<RepoQuAnswer> wrapper = new QueryWrapper<>();

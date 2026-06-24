@@ -30,7 +30,6 @@ public interface RepoMapper extends BaseMapper<Repo> {
      */
     IPage<RepoListRespDTO> paging(Page<Repo> page, @Param("query") RepoDTO query);
 
-
     /**
      * 题库统计，用于考试组卷
      *

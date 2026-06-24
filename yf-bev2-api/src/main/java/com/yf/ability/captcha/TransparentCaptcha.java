@@ -50,10 +50,10 @@ public class TransparentCaptcha extends CircleCaptcha {
 
         for (int i = 0; i < this.interfereCount; ++i) {
             g.setColor(ImgUtil.randomColor(random));
-            g.drawOval(random.nextInt(this.width), random.nextInt(this.height), random.nextInt(this.height >> 1), random.nextInt(this.height >> 1));
+            g.drawOval(random.nextInt(this.width), random.nextInt(this.height), random.nextInt(this.height >> 1),
+                    random.nextInt(this.height >> 1));
         }
     }
-
 
     private void drawString(Graphics2D g, String code) {
         if (null != this.textAlpha) {
@@ -63,4 +63,3 @@ public class TransparentCaptcha extends CircleCaptcha {
         GraphicsUtil.drawStringColourful(g, code, this.font, this.width, this.height);
     }
 }
-

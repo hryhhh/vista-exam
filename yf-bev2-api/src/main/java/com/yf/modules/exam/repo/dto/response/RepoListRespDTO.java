@@ -27,5 +27,4 @@ public class RepoListRespDTO extends RepoDTO {
     @Schema(description = "题目数量")
     private Integer quCount;
 
-
 }

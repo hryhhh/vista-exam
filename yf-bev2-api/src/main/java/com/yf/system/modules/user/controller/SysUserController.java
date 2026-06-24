@@ -42,13 +42,12 @@ public class SysUserController extends BaseController {
 
     private final SysUserRoleService sysUserRoleService;
 
-
     /**
      * 用户详情
      *
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:add", "sys:user:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:user:add", "sys:user:edit" }, logical = Logical.OR)
     @Operation(summary = "用户详情")
     @PostMapping("/detail")
     public ApiRest<SysUserSaveReqDTO> detail(@RequestBody BaseIdReqDTO reqDTO) {
@@ -67,7 +66,6 @@ public class SysUserController extends BaseController {
         SysUserLoginDTO respDTO = baseService.login(reqDTO);
         return super.success(respDTO);
     }
-
 
     /**
      * 用户登录
@@ -107,7 +105,6 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-
     /**
      * 修改密码
      *
@@ -126,7 +123,7 @@ public class SysUserController extends BaseController {
      *
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:add", "sys:user:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:user:add", "sys:user:edit" }, logical = Logical.OR)
     @DataProtect(clazz = SysUser.class, update = true)
     @Operation(summary = "保存或修改")
     @PostMapping("/save")
@@ -135,19 +132,18 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-
     /**
      * 批量删除
      *
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:delete"})
+    @RequiresPermissions(value = { "sys:user:delete" })
     @DataProtect(clazz = SysUser.class, delete = true)
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -158,12 +154,12 @@ public class SysUserController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:paging"})
+    @RequiresPermissions(value = { "sys:user:paging" })
     @Operation(summary = "分页查找")
     @PostMapping("/paging")
     public ApiRest<IPage<UserListRespDTO>> paging(@RequestBody PagingReqDTO<SysUserQueryReqDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<UserListRespDTO> page = baseService.paging(reqDTO);
         return super.success(page);
     }
@@ -174,7 +170,7 @@ public class SysUserController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:state"})
+    @RequiresPermissions(value = { "sys:user:state" })
     @Operation(summary = "修改状态")
     @PostMapping("/state")
     public ApiRest<?> state(@RequestBody BaseStateReqDTO reqDTO) {
@@ -208,13 +204,12 @@ public class SysUserController extends BaseController {
         return success(respDTO);
     }
 
-
     /**
      * 批量修改角色
      *
      * @return
      */
-    @RequiresPermissions(value = {"sys:user:batch-role"})
+    @RequiresPermissions(value = { "sys:user:batch-role" })
     @Operation(summary = "批量修改角色")
     @PostMapping("/batch-role")
     public ApiRest<?> batchRole(@RequestBody UserRoleReqDTO reqDTO) {

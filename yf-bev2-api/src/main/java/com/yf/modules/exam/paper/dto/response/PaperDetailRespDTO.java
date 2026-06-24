@@ -20,7 +20,6 @@ public class PaperDetailRespDTO extends PaperDTO {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "选项列表")
     private List<PaperQuDetailDTO> quList;
 

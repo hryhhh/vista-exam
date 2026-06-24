@@ -1,6 +1,5 @@
 package com.yf.base.api.api.controller;
 
-
 import com.yf.base.api.exception.ServiceException;
 import com.yf.base.api.api.ApiError;
 import com.yf.base.api.api.ApiRest;
@@ -23,7 +22,6 @@ public class BaseController {
      */
     private static final Integer CODE_FAILURE = 1;
     private static final String MSG_FAILURE = "请求失败！";
-
 
     /**
      * 完成消息构造
@@ -54,7 +52,6 @@ public class BaseController {
         return message(0, "请求成功！", null);
     }
 
-
     /**
      * 请求成功，通用代码
      *
@@ -67,7 +64,6 @@ public class BaseController {
         return message(CODE_SUCCESS, message, data);
     }
 
-
     /**
      * 请求成功，仅内容
      *
@@ -78,7 +74,6 @@ public class BaseController {
     protected <T> ApiRest<T> success(T data) {
         return message(CODE_SUCCESS, MSG_SUCCESS, data);
     }
-
 
     /**
      * 请求失败，完整构造
@@ -126,7 +121,6 @@ public class BaseController {
         return message(CODE_FAILURE, MSG_FAILURE, data);
     }
 
-
     /**
      * 请求失败，仅内容
      *
@@ -137,7 +131,6 @@ public class BaseController {
         return message(CODE_FAILURE, MSG_FAILURE, null);
     }
 
-
     /**
      * 请求失败，仅内容
      *
@@ -147,7 +140,6 @@ public class BaseController {
     protected <T> ApiRest<T> failure(ApiError error, T data) {
         return message(error.getCode(), error.msg, data);
     }
-
 
     /**
      * 请求失败，仅内容

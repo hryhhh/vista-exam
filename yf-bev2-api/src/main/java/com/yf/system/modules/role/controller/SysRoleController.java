@@ -49,7 +49,7 @@ public class SysRoleController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:role:add", "sys:role:update"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:role:add", "sys:role:update" }, logical = Logical.OR)
     @DataProtect(clazz = SysRole.class, update = true)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
@@ -64,16 +64,15 @@ public class SysRoleController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:role:delete"})
+    @RequiresPermissions(value = { "sys:role:delete" })
     @DataProtect(clazz = SysRole.class, delete = true)
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.delete(reqDTO.getIds());
         return super.success();
     }
-
 
     /**
      * 查找详情
@@ -81,7 +80,7 @@ public class SysRoleController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:role:add", "sys:role:update"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:role:add", "sys:role:update" }, logical = Logical.OR)
     @Operation(summary = "查找详情")
     @PostMapping("/detail")
     public ApiRest<SysRoleDTO> detail(@RequestBody BaseIdReqDTO reqDTO) {
@@ -91,19 +90,18 @@ public class SysRoleController extends BaseController {
         return super.success(dto);
     }
 
-
     /**
      * 分页查找
      *
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:role:paging"})
+    @RequiresPermissions(value = { "sys:role:paging" })
     @Operation(summary = "分页查找")
     @PostMapping("/paging")
     public ApiRest<IPage<SysRoleDTO>> paging(@RequestBody PagingReqDTO<SysRoleDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<SysRoleDTO> page = baseService.paging(reqDTO);
         return super.success(page);
     }
@@ -113,15 +111,14 @@ public class SysRoleController extends BaseController {
      *
      * @return
      */
-    @RequiresPermissions(value = {"sys:role:grant"})
+    @RequiresPermissions(value = { "sys:role:grant" })
     @Operation(summary = "查找角色菜单授权")
     @PostMapping("/list-menus")
     public ApiRest<List<String>> listMenus(@RequestBody BaseIdReqDTO reqDTO) {
-        //分页查询并转换
+        // 分页查询并转换
         List<String> ids = sysRoleMenuService.findRoleMenus(reqDTO.getId());
         return super.success(ids);
     }
-
 
     /**
      * 保存角色菜单授权
@@ -129,7 +126,7 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @DataProtect(clazz = SysRole.class, update = true)
-    @RequiresPermissions(value = {"sys:role:grant"})
+    @RequiresPermissions(value = { "sys:role:grant" })
     @Operation(summary = "保存角色菜单授权")
     @PostMapping("/save-menus")
     public ApiRest<?> saveMenus(@RequestBody SysRoleMenuReqDTO reqDTO) {
@@ -138,6 +135,5 @@ public class SysRoleController extends BaseController {
         sysRoleMenuService.saveRoleIds(reqDTO.getId(), reqDTO.getMenuIds());
         return super.success();
     }
-
 
 }

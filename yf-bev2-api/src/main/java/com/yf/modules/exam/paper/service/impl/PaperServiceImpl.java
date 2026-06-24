@@ -62,13 +62,13 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     @Override
     public IPage<PaperDTO> paging(PagingReqDTO<PaperDTO> reqDTO) {
 
-        //查询条件
+        // 查询条件
         QueryWrapper<Paper> wrapper = new QueryWrapper<>();
 
         // 请求参数
         PaperDTO params = reqDTO.getParams();
 
-        if (params!=null) {
+        if (params != null) {
             if (StringUtils.isNotBlank(params.getExamId())) {
                 wrapper.lambda().eq(Paper::getExamId, params.getExamId());
             }
@@ -80,12 +80,12 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         // 考试时间倒序
         wrapper.lambda().orderByDesc(Paper::getCreateTime);
 
-        //获得数据
+        // 获得数据
         IPage<Paper> page = this.page(reqDTO.toPage(), wrapper);
-        //转换结果
-        return JsonHelper.parseObject(page, new TypeReference<Page<PaperDTO>>() {});
+        // 转换结果
+        return JsonHelper.parseObject(page, new TypeReference<Page<PaperDTO>>() {
+        });
     }
-
 
     @Override
     public PaperDTO detail(String id) {
@@ -95,14 +95,11 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
         return dto;
     }
 
-
     @Override
     public PaperCheckRespDTO preCheck(String examId, String userId) {
 
-
         PaperCheckRespDTO respDTO = new PaperCheckRespDTO();
         respDTO.setValidated(false);
-
 
         // 查找考试基本信息
         Exam exam = examService.getById(examId);
@@ -211,19 +208,20 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
             if (rule.getQuCount() == null || rule.getQuCount() == 0) {
                 continue;
             }
-            List<RepoQuDetailDTO> quList = repoQuService.listForPaper(rule.getRepoId(), rule.getQuType(), rule.getQuCount());
+            List<RepoQuDetailDTO> quList = repoQuService.listForPaper(rule.getRepoId(), rule.getQuType(),
+                    rule.getQuCount());
             paperQuService.saveToPaper(paper.getId(), rule.getQuScore(), quList, sort);
 
             // 序号增加
-            sort+=quList.size();
+            sort += quList.size();
         }
-
 
         // 到期执行任务
         String paperId = paper.getId();
         // 执行阅卷或完成
         String jobName = "force:hand:paper:" + paperId;
-        jobService.addCronJob(HandPaperJob.class, jobName, JobGroup.SYSTEM, CronUtils.dateToCron(paper.getLimitTime()), paperId);
+        jobService.addCronJob(HandPaperJob.class, jobName, JobGroup.SYSTEM, CronUtils.dateToCron(paper.getLimitTime()),
+                paperId);
 
         return paperId;
     }
@@ -296,7 +294,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
      * @return
      */
     private String findProcess(String examId, String userId) {
-        //查询条件
+        // 查询条件
         QueryWrapper<Paper> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(Paper::getExamId, examId)
                 .eq(Paper::getUserId, userId)

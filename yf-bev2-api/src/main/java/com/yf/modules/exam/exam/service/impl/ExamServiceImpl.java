@@ -38,7 +38,6 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam> implements Ex
         return baseMapper.paging(reqDTO.toPage(), reqDTO.getParams());
     }
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(ExamDetailDTO reqDTO) {
@@ -53,7 +52,7 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam> implements Ex
 
     @Override
     public void delete(List<String> ids) {
-        //批量删除
+        // 批量删除
         this.removeByIds(ids);
 
         // 移除规则

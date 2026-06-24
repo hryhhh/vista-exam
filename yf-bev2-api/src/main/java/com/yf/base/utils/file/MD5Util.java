@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-
 /**
  * MD5工具类
  * ClassName: MD5Util <br/>
@@ -14,7 +13,6 @@ import java.security.MessageDigest;
  * @author Bool
  */
 public class MD5Util {
-
 
     /**
      * 简单MD5

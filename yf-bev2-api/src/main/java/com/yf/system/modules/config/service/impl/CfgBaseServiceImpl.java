@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CfgBaseServiceImpl extends ServiceImpl<CfgBaseMapper, CfgBase> implements CfgBaseService {
 
-
     @Cacheable(value = CacheKey.SITE, key = "'1'")
     @Override
     public CfgBaseDTO findSimple() {
@@ -43,7 +42,7 @@ public class CfgBaseServiceImpl extends ServiceImpl<CfgBaseMapper, CfgBase> impl
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(CfgBaseDTO reqDTO) {
-        //复制参数
+        // 复制参数
         CfgBase entity = new CfgBase();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);

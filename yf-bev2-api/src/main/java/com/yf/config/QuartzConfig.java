@@ -22,5 +22,4 @@ public class QuartzConfig {
         log.error("+++++开始配置任务...");
     }
 
-
 }

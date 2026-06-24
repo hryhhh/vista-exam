@@ -25,7 +25,6 @@ public class HandPaperJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
-
         JobDetail detail = jobExecutionContext.getJobDetail();
         String name = detail.getKey().getName();
         String group = detail.getKey().getGroup();

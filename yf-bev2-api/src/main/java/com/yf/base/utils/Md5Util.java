@@ -6,7 +6,6 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-
 /**
  * MD5工具类
  * ClassName: Md5Util <br/>
@@ -15,7 +14,6 @@ import java.security.MessageDigest;
  * @author Bool
  */
 public class Md5Util {
-
 
     /**
      * 简单MD5

@@ -43,7 +43,7 @@ public class ExamController extends BaseController {
      * @return
      */
     @Operation(summary = "添加或修改")
-    @RequiresPermissions(value = {"exam:exam:add", "exam:exam:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "exam:exam:add", "exam:exam:edit" }, logical = Logical.OR)
     @PostMapping("/save")
     public ApiRest<?> save(@RequestBody ExamDetailDTO reqDTO) {
         examService.save(reqDTO);
@@ -60,7 +60,7 @@ public class ExamController extends BaseController {
     @RequiresPermissions("exam:exam:delete")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         examService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -90,12 +90,11 @@ public class ExamController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<ExamDTO>> paging(@RequestBody PagingReqDTO<ExamListReqDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<ExamDTO> page = examService.paging(reqDTO);
 
         return super.success(page);
     }
-
 
     /**
      * 详情用于考试
@@ -120,7 +119,7 @@ public class ExamController extends BaseController {
     @PostMapping("/client-paging")
     public ApiRest<IPage<ExamDTO>> clientPaging(@RequestBody PagingReqDTO<ExamListReqDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<ExamDTO> page = examService.paging(reqDTO);
 
         return super.success(page);

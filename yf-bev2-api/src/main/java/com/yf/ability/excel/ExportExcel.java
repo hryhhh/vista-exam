@@ -39,7 +39,6 @@ public class ExportExcel {
      */
     public void export(HttpServletResponse response, Class clazz, String title, List list) {
 
-
         if (CollectionUtils.isEmpty(list)) {
             throw new ServiceException("没有可导出的数据，请确认！");
         }
@@ -66,7 +65,6 @@ public class ExportExcel {
             fieldList.add(field);
         }
 
-
         // 进行列排序
         Collections.sort(fieldList, (o1, o2) -> {
             ExcelField a1 = o1.getAnnotation(ExcelField.class);
@@ -82,7 +80,6 @@ public class ExportExcel {
 
     }
 
-
     /**
      * 导出数据
      *
@@ -90,7 +87,8 @@ public class ExportExcel {
      * @param list
      * @throws Exception
      */
-    private void write(HttpServletResponse response, List<Field> fieldList, String title, List list) throws IOException {
+    private void write(HttpServletResponse response, List<Field> fieldList, String title, List list)
+            throws IOException {
 
         MyExcelWriter writer = MyExcelWriter.getBigWriter();
 
@@ -107,7 +105,6 @@ public class ExportExcel {
         writer.close();
         IoUtil.close(out);
     }
-
 
     /**
      * 添加数据（通过annotation.ExportField添加数据）
@@ -166,7 +163,6 @@ public class ExportExcel {
 
         return String.valueOf(val);
     }
-
 
     /**
      * 数据处理、转换、格式化等
@@ -228,7 +224,8 @@ public class ExportExcel {
                 String[] arr1 = item.split("=");
 
                 // 空用null表示
-                if (((val == null || "".equals(String.valueOf(val))) && "null".equals(arr1[0])) || String.valueOf(val).equals(arr1[0])) {
+                if (((val == null || "".equals(String.valueOf(val))) && "null".equals(arr1[0]))
+                        || String.valueOf(val).equals(arr1[0])) {
                     return arr1[1];
                 }
             }
@@ -237,6 +234,5 @@ public class ExportExcel {
         // 返回未翻译的值
         return String.valueOf(val);
     }
-
 
 }

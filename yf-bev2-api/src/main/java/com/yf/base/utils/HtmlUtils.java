@@ -32,7 +32,6 @@ public class HtmlUtils {
         return matcher.replaceAll("");
     }
 
-
     /**
      * 去除文本中的HTML标签，并返回指定长度的文字内容
      *
@@ -73,7 +72,6 @@ public class HtmlUtils {
 
         return result;
     }
-
 
     /**
      * 获取第一个图片URL

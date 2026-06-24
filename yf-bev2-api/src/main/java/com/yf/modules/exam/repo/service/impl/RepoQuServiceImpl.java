@@ -1,6 +1,5 @@
 package com.yf.modules.exam.repo.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -38,13 +37,12 @@ import java.util.*;
 @Service
 public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> implements RepoQuService {
 
-
     private final RepoQuAnswerService repoQuAnswerService;
 
     @Override
     public IPage<RepoQuDTO> paging(PagingReqDTO<RepoQuListReqDTO> reqDTO) {
 
-        //查询条件
+        // 查询条件
         QueryWrapper<RepoQu> wrapper = new QueryWrapper<>();
 
         // 请求参数
@@ -67,17 +65,16 @@ public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> impleme
 
         wrapper.lambda().orderByDesc(RepoQu::getCreateTime);
 
-        //获得数据
+        // 获得数据
         IPage<RepoQu> page = this.page(reqDTO.toPage(), wrapper);
         return JsonHelper.parseObject(page, new TypeReference<Page<RepoQuDTO>>() {
         });
     }
 
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void save(RepoQuDetailDTO reqDTO) {
-        //复制参数
+        // 复制参数
         RepoQu entity = new RepoQu();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);
@@ -88,7 +85,7 @@ public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> impleme
 
     @Override
     public void delete(List<String> ids) {
-        //批量删除
+        // 批量删除
         this.removeByIds(ids);
     }
 
@@ -107,13 +104,13 @@ public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> impleme
     @Override
     public List<RepoQuDTO> list(RepoQuDTO reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<RepoQu> wrapper = new QueryWrapper<>();
 
-        //转换并返回
+        // 转换并返回
         List<RepoQu> list = this.list(wrapper);
 
-        //转换数据
+        // 转换数据
         List<RepoQuDTO> dtoList = BeanMapper.mapList(list, RepoQuDTO.class);
 
         return dtoList;
@@ -142,7 +139,6 @@ public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> impleme
         return resultList;
     }
 
-
     /**
      * 把题库的全部ID找出来，组成一个题型--IDS列表的MAP
      *
@@ -152,7 +148,7 @@ public class RepoQuServiceImpl extends ServiceImpl<RepoQuMapper, RepoQu> impleme
     private Map<String, List<String>> typeQuIds(String repoId) {
         Map<String, List<String>> map = new HashMap<>();
 
-        //分页查询并转换
+        // 分页查询并转换
         QueryWrapper<RepoQu> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .select(RepoQu::getId, RepoQu::getQuType)

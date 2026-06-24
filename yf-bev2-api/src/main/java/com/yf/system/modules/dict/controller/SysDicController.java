@@ -41,7 +41,7 @@ public class SysDicController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:dict:add", "sys:dict:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:dict:add", "sys:dict:edit" }, logical = Logical.OR)
     @DataProtect(clazz = SysDic.class, update = true)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
@@ -56,12 +56,12 @@ public class SysDicController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:dict:delete"})
+    @RequiresPermissions(value = { "sys:dict:delete" })
     @DataProtect(clazz = SysDic.class, delete = true)
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -75,7 +75,7 @@ public class SysDicController extends BaseController {
     @Operation(summary = "分页查找")
     @PostMapping("/paging")
     public ApiRest<IPage<SysDicDTO>> paging(@RequestBody PagingReqDTO<SysDicDTO> reqDTO) {
-        //分页查询并转换
+        // 分页查询并转换
         IPage<SysDicDTO> page = baseService.paging(reqDTO);
         return super.success(page);
     }

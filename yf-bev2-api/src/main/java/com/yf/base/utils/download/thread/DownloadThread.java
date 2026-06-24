@@ -1,6 +1,5 @@
 package com.yf.base.utils.download.thread;
 
-
 import com.yf.base.utils.download.temp.DownloadTempThread;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -79,10 +78,10 @@ public class DownloadThread extends Thread {
         logger.info("thread {0} start download", threadName);
 
         RandomAccessFile raf;
-        //连接文件、确定文件头的大小
+        // 连接文件、确定文件头的大小
         CloseableHttpClient client = HttpClients.createDefault();
         HttpGet get = new HttpGet(this.url);
-        //获取指定的文件段
+        // 获取指定的文件段
         get.setHeader("RANGE", "bytes=" + this.skip + "-" + this.pos);
 
         try {
@@ -90,7 +89,7 @@ public class DownloadThread extends Thread {
             raf.seek(this.skip);
             CloseableHttpResponse response = client.execute(get);
 
-            //获得文件流
+            // 获得文件流
             InputStream is = response.getEntity().getContent();
 
             int len;
@@ -116,7 +115,7 @@ public class DownloadThread extends Thread {
      */
     public DownloadTempThread toTemp() {
 
-        //保存线程加载信息
+        // 保存线程加载信息
         DownloadTempThread t = new DownloadTempThread();
         t.setLoaded(this.loaded);
         t.setPos(this.pos);
@@ -140,7 +139,6 @@ public class DownloadThread extends Thread {
         this.loaded = t.getLoaded();
         this.setName(t.getThreadName());
     }
-
 
     public long getSkip() {
         return skip;

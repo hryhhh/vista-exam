@@ -33,7 +33,7 @@ public class ExamRecordServiceImpl extends ServiceImpl<ExamRecordMapper, ExamRec
     @Override
     public void joinRecord(String examId, String userId, String paperId, BigDecimal score, Boolean passed) {
 
-        //查询条件
+        // 查询条件
         QueryWrapper<ExamRecord> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .select(ExamRecord::getId, ExamRecord::getMaxScore, ExamRecord::getTryCount)
@@ -70,7 +70,7 @@ public class ExamRecordServiceImpl extends ServiceImpl<ExamRecordMapper, ExamRec
     @Override
     public int findTryCount(String examId, String userId) {
 
-        //查询条件
+        // 查询条件
         QueryWrapper<ExamRecord> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .select(ExamRecord::getId, ExamRecord::getTryCount)

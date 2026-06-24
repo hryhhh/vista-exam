@@ -35,7 +35,6 @@ public class PaperController extends BaseController {
 
     private final PaperService baseService;
 
-
     /**
      * 查找详情
      *
@@ -72,7 +71,7 @@ public class PaperController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<PaperDTO>> paging(@RequestBody PagingReqDTO<PaperDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<PaperDTO> page = baseService.paging(reqDTO);
 
         return super.success(page);
@@ -91,7 +90,6 @@ public class PaperController extends BaseController {
         return super.success(respDTO);
     }
 
-
     /**
      * 创建考试
      *
@@ -101,7 +99,7 @@ public class PaperController extends BaseController {
     @Operation(summary = "创建考试", description = "学员进入考试")
     @PostMapping("/create")
     public ApiRest<BaseIdRespDTO> create(@RequestBody BaseIdReqDTO reqDTO) {
-        //分页查询并转换
+        // 分页查询并转换
         String paperId = baseService.createPaper(reqDTO.getId(), UserUtils.getUserId());
         return super.success(new BaseIdRespDTO(paperId));
     }
@@ -118,7 +116,6 @@ public class PaperController extends BaseController {
         baseService.handPaper(reqDTO.getId());
         return super.success();
     }
-
 
     /**
      * 获取试卷的实时状态

@@ -32,5 +32,4 @@ public interface FuncSwitch {
     // 微信登录
     String WECHAT_LOGIN = "wechatLogin";
 
-
 }

@@ -59,7 +59,6 @@ public interface PaperService extends IService<Paper> {
      */
     void handPaper(String paperId);
 
-
     /**
      * 获取实时状态
      *
@@ -70,6 +69,7 @@ public interface PaperService extends IService<Paper> {
 
     /**
      * 完整试卷详情
+     * 
      * @param id
      * @return
      */

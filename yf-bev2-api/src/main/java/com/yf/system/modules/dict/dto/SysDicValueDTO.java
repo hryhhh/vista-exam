@@ -21,7 +21,6 @@ public class SysDicValueDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-
     @Schema(description = "ID/字典编码")
     private String id;
 

@@ -18,7 +18,6 @@ import java.util.List;
 @Schema(name = "删除参数", description = "删除参数")
 public class BaseIdsReqDTO extends BaseDTO {
 
-
     @JsonIgnore
     private String userId;
 

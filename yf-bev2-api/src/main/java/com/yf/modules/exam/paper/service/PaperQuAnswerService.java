@@ -18,7 +18,6 @@ import java.util.List;
  */
 public interface PaperQuAnswerService extends IService<PaperQuAnswer> {
 
-
     /**
      * 根据试卷和ID查找选项列表，用于判题
      *

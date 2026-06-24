@@ -1,6 +1,5 @@
 package com.yf.modules.exam.repo.service.impl;
 
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yf.base.api.api.dto.PagingReqDTO;
@@ -31,10 +30,9 @@ public class RepoServiceImpl extends ServiceImpl<RepoMapper, Repo> implements Re
         return baseMapper.paging(reqDTO.toPage(), reqDTO.getParams());
     }
 
-
     @Override
     public void save(RepoDTO reqDTO) {
-        //复制参数
+        // 复制参数
         Repo entity = new Repo();
         BeanMapper.copy(reqDTO, entity);
         this.saveOrUpdate(entity);
@@ -42,7 +40,7 @@ public class RepoServiceImpl extends ServiceImpl<RepoMapper, Repo> implements Re
 
     @Override
     public void delete(List<String> ids) {
-        //批量删除
+        // 批量删除
         this.removeByIds(ids);
     }
 

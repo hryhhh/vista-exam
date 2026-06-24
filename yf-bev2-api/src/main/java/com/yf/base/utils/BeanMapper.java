@@ -1,6 +1,5 @@
 package com.yf.base.utils;
 
-
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
@@ -9,7 +8,6 @@ import com.github.dozermapper.core.loader.api.TypeMappingOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Dozer工具类，用于实体参数之间的转换和复制
  *
@@ -17,7 +15,6 @@ import java.util.List;
  * @since 2025-04-09 16:00:00
  */
 public class BeanMapper {
-
 
     /**
      * 持有Dozer单例, 使用延迟初始化Holder模式保证线程安全

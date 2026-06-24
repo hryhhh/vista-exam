@@ -23,7 +23,6 @@ public interface SysRoleMenuService extends IService<SysRoleMenu> {
      */
     List<String> findRoleMenus(String roleId);
 
-
     /**
      * 保存角色授权
      *

@@ -60,7 +60,7 @@ public class SysMenuController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:menu:add", "sys:menu:update"}, logical = Logical.OR)
+    @RequiresPermissions(value = { "sys:menu:add", "sys:menu:update" }, logical = Logical.OR)
     @DataProtect(clazz = SysMenu.class, update = true)
     @Operation(summary = "添加或修改")
     @PostMapping("/save")
@@ -75,12 +75,12 @@ public class SysMenuController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:menu:delete"})
+    @RequiresPermissions(value = { "sys:menu:delete" })
     @DataProtect(clazz = SysMenu.class, delete = true)
     @Operation(summary = "批量删除")
     @PostMapping("/delete")
     public ApiRest<?> delete(@RequestBody BaseIdsReqDTO reqDTO) {
-        //根据ID删除
+        // 根据ID删除
         baseService.delete(reqDTO.getIds());
         return super.success();
     }
@@ -101,7 +101,6 @@ public class SysMenuController extends BaseController {
         return super.success(dto);
     }
 
-
     /**
      * 分页查找树结构
      *
@@ -110,11 +109,10 @@ public class SysMenuController extends BaseController {
     @Operation(summary = "菜单树结构", description = "一次性加载完全部数据，用于后端维护")
     @PostMapping("/tree")
     public ApiRest<List<MenuTreeRespDTO>> tree() {
-        //分页查询并转换
+        // 分页查询并转换
         List<MenuTreeRespDTO> list = baseService.listTree();
         return super.success(list);
     }
-
 
     /**
      * 分类排序
@@ -122,7 +120,7 @@ public class SysMenuController extends BaseController {
      * @param reqDTO
      * @return
      */
-    @RequiresPermissions(value = {"sys:menu:sort"})
+    @RequiresPermissions(value = { "sys:menu:sort" })
     @DataProtect(clazz = SysMenu.class, update = true)
     @Operation(summary = "调整菜单排序")
     @PostMapping("/sort")
@@ -130,6 +128,5 @@ public class SysMenuController extends BaseController {
         baseService.sort(reqDTO);
         return super.success();
     }
-
 
 }

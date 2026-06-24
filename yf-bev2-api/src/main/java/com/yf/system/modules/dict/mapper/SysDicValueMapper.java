@@ -33,7 +33,7 @@ public interface SysDicValueMapper extends BaseMapper<SysDicValue> {
      * @return
      */
     String findTableText(@Param("dicTable") String dicTable,
-                         @Param("dicText") String dicText,
-                         @Param("dicCode") String dicCode,
-                         @Param("dicValue") String dicValue);
+            @Param("dicText") String dicText,
+            @Param("dicCode") String dicCode,
+            @Param("dicValue") String dicValue);
 }

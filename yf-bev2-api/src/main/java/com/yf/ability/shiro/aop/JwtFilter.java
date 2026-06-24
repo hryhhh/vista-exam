@@ -1,6 +1,5 @@
 package com.yf.ability.shiro.aop;
 
-
 import com.yf.ability.Constant;
 import com.yf.ability.shiro.jwt.JwtToken;
 import com.yf.base.api.api.ApiError;
@@ -18,7 +17,6 @@ import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.springframework.http.HttpHeaders;
 
 import java.util.Set;
-
 
 /**
  * 鉴权登录拦截器
@@ -39,8 +37,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     private static final Set<String> EXCLUDED_URL_PREFIXES = Set.of(
             "/api/connect",
             "/api/open/user/sync",
-            "/api/sys/user/logout"
-    );
+            "/api/sys/user/logout");
 
     /**
      * 执行登录认证
@@ -51,12 +48,13 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      * @return
      */
     @Override
-    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) {
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
+            Object mappedValue) {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        //这几句代码是关键
+        // 这几句代码是关键
         if (CROSS_OPTIONS.equals(request.getMethod())) {
             response.setStatus(HttpStatus.SC_NO_CONTENT);
             response.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
@@ -78,7 +76,6 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         return this.executeLogin(servletRequest, servletResponse);
     }
 
-
     @Override
     protected boolean executeLogin(ServletRequest servletRequest, ServletResponse servletResponse) {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -87,7 +84,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
 
         // 尝试从cookie中获取
         if (StringUtils.isBlank(token)) {
-            Cookie [] cookies = request.getCookies();
+            Cookie[] cookies = request.getCookies();
             if (cookies != null && cookies.length > 0) {
                 for (Cookie cookie : cookies) {
                     if (Constant.TOKEN.equals(cookie.getName())) {

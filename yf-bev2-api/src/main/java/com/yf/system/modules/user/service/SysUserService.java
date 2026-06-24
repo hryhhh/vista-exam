@@ -75,6 +75,7 @@ public interface SysUserService extends IService<SysUser> {
 
     /**
      * 修改密码
+     * 
      * @param reqDTO
      */
     void pass(SysUserPassReqDTO reqDTO);

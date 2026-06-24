@@ -53,7 +53,7 @@ public class PluginDataController extends BaseController {
     @PostMapping("/paging")
     public ApiRest<IPage<PluginDataDTO>> paging(@RequestBody PagingReqDTO<PluginDataDTO> reqDTO) {
 
-        //分页查询并转换
+        // 分页查询并转换
         IPage<PluginDataDTO> page = baseService.paging(reqDTO);
 
         return super.success(page);

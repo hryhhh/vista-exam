@@ -1,6 +1,5 @@
 package com.yf.ability.shiro;
 
-
 import com.yf.ability.shiro.dto.SysUserLoginDTO;
 import com.yf.ability.shiro.jwt.JwtToken;
 import com.yf.ability.shiro.jwt.JwtUtils;
@@ -33,12 +32,10 @@ public class MyShiroRealm extends AuthorizingRealm {
 
     private final ShiroUserService shiroUserService;
 
-
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof JwtToken;
     }
-
 
     /**
      * 详细授权认证
@@ -89,7 +86,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         return new SimpleAuthenticationInfo(user, token, getName());
     }
-
 
     /**
      * 校验Token的有效性

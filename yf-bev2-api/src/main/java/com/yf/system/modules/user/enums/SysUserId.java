@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.enums;
 
-
 /**
  * 系统用户信息
  *
@@ -18,6 +17,5 @@ public interface SysUserId {
      * 学员
      */
     String STUDENT = "user";
-
 
 }

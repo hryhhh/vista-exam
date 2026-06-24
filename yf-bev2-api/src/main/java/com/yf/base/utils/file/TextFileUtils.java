@@ -47,7 +47,6 @@ public class TextFileUtils {
         return sb.toString();
     }
 
-
     /**
      * append:将一个字符写入一个已有的文件中，通过追加的方法追加到内容的末尾；
      *
@@ -62,7 +61,7 @@ public class TextFileUtils {
 
         try {
 
-            //创建文件夹
+            // 创建文件夹
             String dirPath = filePath.substring(0, filePath.lastIndexOf("/") + 1);
             File dir = new File(dirPath);
 
@@ -76,7 +75,6 @@ public class TextFileUtils {
             }
             ;
             BufferedReader input = new BufferedReader(new FileReader(f));
-
 
             while ((s = input.readLine()) != null) {
                 sb.append(s);
@@ -92,7 +90,6 @@ public class TextFileUtils {
         }
     }
 
-
     /**
      * 将一段文字写入指定的文件中
      *
@@ -103,7 +100,7 @@ public class TextFileUtils {
 
         try {
 
-            //创建文件夹
+            // 创建文件夹
             String dirPath = filePath.substring(0, filePath.lastIndexOf("/") + 1);
             File dir = new File(dirPath);
 
@@ -125,7 +122,6 @@ public class TextFileUtils {
         }
     }
 
-
     /**
      * 读入TXT文件
      */
@@ -133,10 +129,9 @@ public class TextFileUtils {
 
         StringBuffer sb = new StringBuffer();
         try (InputStreamReader reader = new InputStreamReader(is);
-             BufferedReader br = new BufferedReader(reader)
-        ) {
+                BufferedReader br = new BufferedReader(reader)) {
             String line;
-            //网友推荐更加简洁的写法
+            // 网友推荐更加简洁的写法
             while ((line = br.readLine()) != null) {
                 // 一次读入一行数据
                 sb.append(line + "\n");
@@ -147,7 +142,6 @@ public class TextFileUtils {
         return sb.toString();
     }
 
-
     /**
      * 写入TXT文件
      */
@@ -156,8 +150,7 @@ public class TextFileUtils {
             File writeName = new File(path);
             writeName.createNewFile(); // 创建新文件,有同名的文件的话直接覆盖
             try (FileWriter writer = new FileWriter(writeName);
-                 BufferedWriter out = new BufferedWriter(writer)
-            ) {
+                    BufferedWriter out = new BufferedWriter(writer)) {
                 out.write(text);
                 out.flush();
             }

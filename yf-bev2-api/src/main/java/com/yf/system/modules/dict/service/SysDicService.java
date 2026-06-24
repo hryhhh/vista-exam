@@ -40,5 +40,4 @@ public interface SysDicService extends IService<SysDic> {
      */
     void delete(List<String> ids);
 
-
 }

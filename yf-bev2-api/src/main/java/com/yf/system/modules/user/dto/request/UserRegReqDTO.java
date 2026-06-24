@@ -37,5 +37,4 @@ public class UserRegReqDTO implements Serializable {
     @Schema(description = "验证码值")
     private String captchaValue;
 
-
 }

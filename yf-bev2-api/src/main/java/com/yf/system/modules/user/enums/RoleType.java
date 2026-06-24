@@ -1,6 +1,5 @@
 package com.yf.system.modules.user.enums;
 
-
 /**
  * 角色类型
  *
@@ -13,6 +12,5 @@ public interface RoleType {
      * 管理角色
      */
     Integer ROLE_ADMIN = 2;
-
 
 }

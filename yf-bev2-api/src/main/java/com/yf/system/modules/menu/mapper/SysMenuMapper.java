@@ -18,14 +18,12 @@ import java.util.List;
  */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-
     /**
      * 列出菜单树结构
      *
      * @return
      */
     List<MenuTreeRespDTO> listTree();
-
 
     /**
      * 获得管理路由表
@@ -35,7 +33,6 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      */
     List<RouteRespDTO> listMenuByRoles(@Param("roleIds") List<String> roleIds);
 
-
     /**
      * 获得全部功能权限表
      *
@@ -43,7 +40,6 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      * @return
      */
     List<String> listPermissionByRoles(@Param("roleIds") List<String> roleIds);
-
 
     /**
      * 查找某个目标下最大的序号
