@@ -13,8 +13,6 @@ import java.io.Serializable;
  * 考试记录数据传输类
  * </p>
  *
- * @author 沉醉寒风
- * @since 2025-04-17 14:59
  */
 @Data
 @Schema(description = "考试记录")
